@@ -1,0 +1,45 @@
+﻿@model FantasyEuroleague.ViewModels.PlayerFormViewModel
+
+@{
+    ViewBag.Title = "PlayerForm";
+}
+
+<h2>New Player</h2>
+@using (Html.BeginForm("Save", "Player"))
+{
+    @Html.AntiForgeryToken()
+    <div class="form-group">
+        @Html.LabelFor(p => p.Firstname)
+        @Html.TextBoxFor(p => p.Firstname, new { @class = "form-control" })
+        @Html.ValidationMessageFor(p => p.Firstname)
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(p => p.Lastname)
+        @Html.TextBoxFor(p => p.Lastname, new { @class = "form-control" })
+        @Html.ValidationMessageFor(p => p.Lastname)
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(p => p.Profile.Country)
+        @Html.TextBoxFor(p => p.Profile.Country, new { @class = "form-control" })
+        @Html.ValidationMessageFor(p => p.Profile.Country)
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(p => p.Profile.Position)
+        @Html.EnumDropDownListFor(p => p.Profile.Position, new { @class = "form-control" })
+        @Html.ValidationMessageFor(p => p.Profile.Position)
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(p => p.TeamID)
+        @Html.DropDownListFor(p => p.TeamID, new SelectList(Model.Teams, "ID", "Name"), "--Select--", new { @class = "form-control" })
+        @Html.ValidationMessageFor(p => p.TeamID)
+    </div>
+
+    @Html.HiddenFor(pl => pl.Id)
+    <button type="submit" class="btn btn-primary">Save</button>
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+
