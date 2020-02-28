@@ -26,13 +26,17 @@ namespace FantasyEuroleague.Controllers
         // GET: Player
         public ActionResult Index()
         {
-            var players = context.Players
-            .Include(p => p.Profile)
-            .Include(p => p.Team).ToList();
+            //var players = context.Players
+            //.Include(p => p.Profile)
+            //.Include(p => p.Team).ToList();
 
-            return View(players);
+            //return View(players);
+
+            return View("PlayersList");
         }
 
+        //[Authorize(Roles = RoleName.AppManager)]
+        // GET: Player/New
         public ViewResult New()
         {
             var teams = context.Teams.ToList();
@@ -43,6 +47,7 @@ namespace FantasyEuroleague.Controllers
             return View("PlayerForm", viewModel);
         }
 
+        // POST: Player/Save
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Save(Player player)
@@ -78,6 +83,8 @@ namespace FantasyEuroleague.Controllers
             return RedirectToAction("Index", "Player");
         }
 
+        //[Authorize(Roles = RoleName.AppManager)]
+        // GET: Player/Edit/id
         public ActionResult Edit(int id)
         {
             var player = context.Players
@@ -95,6 +102,20 @@ namespace FantasyEuroleague.Controllers
             return View("PlayerForm", viewModel);
         }
 
+        //[Authorize(Roles = RoleName.AppManager)]
+        // GET: Player/Delete/id
+        public ActionResult Delete(int id)
+        {
+            var playerInDb = context.Players.
+                 Include(p => p.Profile)
+                .SingleOrDefault(p => p.ID == id);
 
+            if (playerInDb == null)
+                return HttpNotFound();
+
+            context.Players.Remove(playerInDb);
+            context.SaveChanges();
+            return RedirectToAction("Index");
+        }
     }
 }

@@ -1,0 +1,72 @@
+﻿@model IEnumerable<FantasyEuroleague.Models.Player>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Players</h2>
+<table id="players" class="table table-bordered">
+    <thead>
+        <tr>
+            <th>FullName</th>
+            <th>Nationality</th>
+            <th>Position</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+    </tbody>
+</table>
+
+@section  scripts
+{
+    <script>
+        $(document).ready(function () {
+            var table = $("#players").DataTable({
+                ajax: {
+                    url: "/api/players/",
+                    dataSrc: ""
+                },
+                columns: [
+                    {
+                        data: "name",
+                        render: function (data, type, player) {
+                            return "<a href = '/player/edit/" + player.ID + "'>" + player.Lastname + " " + player.Firstname + "</a>";
+                        }
+                    },
+                    {
+                        data: "Profile.Country"
+                    },
+                    {
+                        data: "Profile.Position"
+                    },
+                    {
+                        data: "ID",
+                        render: function (data) {
+                            return "<button class='btn btn-link js-delete' data-player-id=" + data + ">Delete</button>"
+                        }
+                    }
+                ]
+            });
+
+            // Delete Functionality
+            $("#players").on("click", ".js-delete", function () {
+                let button = $(this);
+
+                bootbox.confirm("The Player will be deleted permanently.Are you sure?", function (result) {
+                    if (result) {
+                        $.ajax({
+                            url: "/api/players/" + button.attr("data-player-id"),
+                            method: "DELETE",
+                            success: function () {
+                                table.row(button.parents("tr")).remove().draw();
+                            }
+                        })
+                    }
+                });
+            });
+
+        });
+
+    </script>
+}

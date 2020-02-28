@@ -20,16 +20,15 @@ namespace FantasyEuroleague.Controllers.API
             context = new ApplicationDbContext();
         }
 
-        // GET /api/players
+        // GET: /api/players
         public IEnumerable<PlayerDto> GetPlayers()
         {
-
             return context.Players
                 .Include(p => p.Profile)
                 .Select(Mapper.Map<Player, PlayerDto>);
         }
 
-        // GET /api/player/id
+        // GET: /api/player/id
         public IHttpActionResult GetPlayer(int id)
         {
             var player = context.Players
@@ -42,7 +41,7 @@ namespace FantasyEuroleague.Controllers.API
             return Ok(Mapper.Map<Player, PlayerDto>(player));
         }
 
-        // POST /api/players
+        // POST: /api/players
         [HttpPost]
         public IHttpActionResult CreatePlayer(PlayerDto playerDto)
         {
@@ -55,7 +54,7 @@ namespace FantasyEuroleague.Controllers.API
             return Created(new Uri(Request.RequestUri + "/" + player.ID), playerDto);
         }
 
-        // PUT /api/players/id
+        // PUT: /api/players/id
         [HttpPut]
         public void UpdatePlayer(int id, PlayerDto playerDto)
         {
@@ -73,7 +72,7 @@ namespace FantasyEuroleague.Controllers.API
             context.SaveChanges();
         }
 
-        // DELETE /api/players/id
+        // DELETE: /api/players/id
         [HttpDelete]
         public void DeletePlayer(int id)
         {

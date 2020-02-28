@@ -1,0 +1,24 @@
+﻿@model IEnumerable<FantasyEuroleague.Models.Game>
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Euroleague Games</h2>
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>HomeTeam</th>
+            <th>GuestTeam</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var game in Model)
+        {
+            <tr>
+                <td>@Html.ActionLink(game.HomeTeam.Name, "Details", "Game", new { gameId = game.ID, teamId = game.HomeTeamID }, null)</td>
+                <td>@Html.ActionLink(game.GuestTeam.Name, "Details", "Game", new { gameId = game.ID, teamId = game.GuestTeamID }, null)</td>
+            </tr>
+        }
+    </tbody>
+</table>
+

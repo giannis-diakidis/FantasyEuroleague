@@ -1,3 +1,5 @@
+using FantasyEuroleague.Data;
+using System.Data.Entity.Infrastructure.Interception;
 using AutoMapper;
 using FantasyEuroleague.App_Start;
 using System;
@@ -22,6 +24,7 @@ namespace FantasyEuroleague
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+            DbInterception.Add(new FantasyEuroleagueInterceptorLogging());
         }
     }
 }

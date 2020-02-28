@@ -5,23 +5,27 @@
 
 <h2>Players</h2>
 <p>
-    @Html.ActionLink("New Player", "New", "Player", null, new { @class = "btn btn-primary"})
+    @Html.ActionLink("Add New Player", "New", "Player", null, new { @class = "btn btn-primary"})
 </p>
 
 <table class="table table-bordered">
     <thead>
         <tr>
-            <th colspan= "3">Players From Database</th>
+            <th>FullName</th>
+            <th>Nationality</th>
+            <th>Team</th>
+            <th></th>
         </tr>
     </thead>
     <tbody>
         @foreach (var player in Model)
         {
-        <tr>
-            <td>@Html.ActionLink(player.Fullname, "Edit", "Player", new { id = player.ID }, null)</td>
-            <td>@player.Profile.Country</td>
-            <td>@player.Team.Name</td>
-        </tr>
+            <tr>
+                <td>@Html.ActionLink(player.Fullname, "Edit", "Player", new { id = player.ID }, null)</td>
+                <td>@player.Profile.Country</td>
+                <td>@player.Team.Name</td>
+                <td>@Html.ActionLink("Delete", "Delete", "Player", new { id = player.ID}, null)</td>
+            </tr>
         }
     </tbody>
 
