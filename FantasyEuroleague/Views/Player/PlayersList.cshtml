@@ -5,13 +5,20 @@
 }
 
 <h2>Players</h2>
+
+<p>
+    @Html.ActionLink("Add New Player", "New", "Player", null, new { @class = "btn btn-primary" })
+</p>
+
 <table id="players" class="table table-bordered">
     <thead>
         <tr>
             <th>FullName</th>
             <th>Nationality</th>
             <th>Position</th>
-            <th></th>
+            <th>Team</th>
+            <th>Edit</th>
+            <th>Delete</th>
         </tr>
     </thead>
     <tbody>
@@ -31,7 +38,7 @@
                     {
                         data: "name",
                         render: function (data, type, player) {
-                            return "<a href = '/player/edit/" + player.ID + "'>" + player.Lastname + " " + player.Firstname + "</a>";
+                            return "<a href = '/player/details/" + player.ID + "'>" + player.Fullname + "</a>";
                         }
                     },
                     {
@@ -41,9 +48,18 @@
                         data: "Profile.Position"
                     },
                     {
+                        data: "Team.Name"
+                    },
+                    {
+                        data: "edit",
+                        render: function (data, type, player) {
+                            return "<a href = '/player/edit/" + player.ID + "'>" + "Edit</a>";
+                        }
+                    },
+                    {
                         data: "ID",
                         render: function (data) {
-                            return "<button class='btn btn-link js-delete' data-player-id=" + data + ">Delete</button>"
+                            return "<button class='btn btn-primary js-delete' data-player-id=" + data + ">Delete</button>"
                         }
                     }
                 ]
@@ -53,7 +69,7 @@
             $("#players").on("click", ".js-delete", function () {
                 let button = $(this);
 
-                bootbox.confirm("The Player will be deleted permanently.Are you sure?", function (result) {
+                bootbox.confirm("The Player will be deleted permanently. Are you sure?", function (result) {
                     if (result) {
                         $.ajax({
                             url: "/api/players/" + button.attr("data-player-id"),

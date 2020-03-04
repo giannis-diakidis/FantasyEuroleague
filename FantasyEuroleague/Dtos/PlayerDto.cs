@@ -13,7 +13,10 @@ namespace FantasyEuroleague.Dtos
         public int ID { get; set; }
         public string Firstname { get; set; }
         public string Lastname { get; set; }
+        public string Fullname { get { return Firstname + " " + Lastname; } }
         public ProfileDto Profile { get; set; }
+        public TeamDto Team { get; set; }
         public int TeamID { get; set; }
+
     }
 }

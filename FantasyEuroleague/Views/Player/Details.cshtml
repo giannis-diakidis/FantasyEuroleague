@@ -1,0 +1,80 @@
+﻿@model FantasyEuroleague.ViewModels.PlayerDetailsViewModel
+@{
+    ViewBag.Title = "Player Details";
+}
+
+<h2>Statistics</h2>
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th colspan="6"></th>
+            <th colspan="3">Rebounds</th>
+            <th colspan="3"></th>
+            <th colspan="2">Blocks</th>
+            <th colspan="2">Fouls</th>
+            <th></th>
+        </tr>
+        <tr>
+            <th></th>                        
+            <th>G</th>
+            <th>Pts</th>
+            <th>2FG</th>
+            <th>3FG</th>
+            <th>FT</th>
+            <th>O</th>
+            <th>D</th>
+            <th>T</th>
+            <th>As</th>
+            <th>St</th>
+            <th>To</th>
+            <th>Fv</th>
+            <th>Ag</th>
+            <th>Cm</th>
+            <th>Rv</th>
+            <th>PIR</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td><b>Totals:</b></td>
+            <td>@Model.NumberOfGames</td>
+            <td>@Model.TotalPoints</td>
+            <td>@Model.TotalTwoPointsMade/@Model.TotalTwoPointsAttempted</td>
+            <td>@Model.TotalThreePointsMade/@Model.TotalThreePointsAttempted</td>
+            <td>@Model.TotalFreeThrowsMade/@Model.TotalFreeThrowsAttempted</td>
+            <td>@Model.TotalOffensiveRebounds</td>
+            <td>@Model.TotalDefensiveRebounds</td>
+            <td>@Model.TotalRebounds</td>
+            <td>@Model.TotalAssists</td>
+            <td>@Model.TotalSteals</td>
+            <td>@Model.TotalTurnovers</td>
+            <td>@Model.TotalBlocksMade</td>
+            <td>@Model.TotalBlocksReceived</td>
+            <td>@Model.TotalFoulsMade</td>
+            <td>@Model.TotalFoulsReceived</td>
+            <td>@Model.TotalPIR</td>
+        </tr>
+        <tr>
+            <td><b>Averages:</b></td>
+            <td>@Model.NumberOfGames</td>
+            <td>@Html.DisplayFor(average => @Model.AveragePoints)</td>
+            <td>@Html.DisplayFor(percentage => @Model.AverageTwoPoints)%</td>
+            <td>@Html.DisplayFor(percentage => @Model.AverageThreePoints)%</td>
+            <td>@Html.DisplayFor(percentage => @Model.AverageFreeThrows)%</td>
+            <td>@Html.DisplayFor(average => @Model.AverageOffensiveRebounds)</td>
+            <td>@Html.DisplayFor(average => @Model.AverageDefensiveRebounds)</td>
+            <td>@Html.DisplayFor(average => @Model.AverageRebounds)</td>
+            <td>@Html.DisplayFor(average => @Model.AverageAssists)</td>
+            <td>@Html.DisplayFor(average => @Model.AverageSteals)</td>
+            <td>@Html.DisplayFor(average => @Model.AverageTurnovers)</td>
+            <td>@Html.DisplayFor(average => @Model.AverageBlocksMade)</td>
+            <td>@Html.DisplayFor(average => @Model.AverageBlocksReceived)</td>
+            <td>@Html.DisplayFor(average => @Model.AverageFoulsMade)</td>
+            <td>@Html.DisplayFor(average => @Model.AverageFoulsReceived)</td>
+            <td>@Html.DisplayFor(average => @Model.AveragePIR)</td>
+        </tr>
+    </tbody>
+    
+</table>
+

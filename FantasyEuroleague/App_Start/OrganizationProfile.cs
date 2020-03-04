@@ -17,6 +17,9 @@ namespace FantasyEuroleague.App_Start
 
             CreateMap<Profile, ProfileDto>();
             CreateMap<ProfileDto, Profile>();
+
+            CreateMap<Team, TeamDto>();
+            CreateMap<TeamDto, Team>();
         }
     }
 }

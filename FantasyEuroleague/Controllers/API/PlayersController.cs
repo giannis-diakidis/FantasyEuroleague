@@ -25,6 +25,7 @@ namespace FantasyEuroleague.Controllers.API
         {
             return context.Players
                 .Include(p => p.Profile)
+                .Include(p => p.Team)
                 .Select(Mapper.Map<Player, PlayerDto>);
         }
 

@@ -117,5 +117,19 @@ namespace FantasyEuroleague.Controllers
             context.SaveChanges();
             return RedirectToAction("Index");
         }
+
+        public ActionResult Details(int id)
+        {
+            var playerInDb = context.Players.SingleOrDefault(p => p.ID == id);
+            
+            if (playerInDb == null)
+                return HttpNotFound();
+
+            var stats = context.PlayerStats.Where(ps => ps.Player.ID == playerInDb.ID).ToList();
+            PlayerDetailsViewModel viewModel = new PlayerDetailsViewModel();
+            viewModel.AddStat(stats);
+
+            return View(viewModel);
+        }
     }
 }
