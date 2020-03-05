@@ -34,6 +34,7 @@ namespace FantasyEuroleague.Controllers.API
         {
             var player = context.Players
                 .Include(p => p.Profile)
+                .Include(p => p.Team)
                 .SingleOrDefault(p => p.ID == id);
 
             if (player == null)
@@ -51,6 +52,7 @@ namespace FantasyEuroleague.Controllers.API
 
             var player = Mapper.Map<PlayerDto, Player>(playerDto);
             context.Players.Add(player);
+
             context.SaveChanges();
             return Created(new Uri(Request.RequestUri + "/" + player.ID), playerDto);
         }

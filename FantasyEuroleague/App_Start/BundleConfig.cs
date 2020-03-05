@@ -13,7 +13,8 @@ namespace FantasyEuroleague
                         "~/Scripts/bootbox.js",
                         "~/Scripts/bootstrap.js",
                         "~/Scripts/DataTables/jquery.dataTables.js",
-                        "~/Scripts/DataTables/dataTables.bootstrap.js"));
+                        "~/Scripts/DataTables/dataTables.bootstrap.js",
+                        "~/Scripts/toastr.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
                         "~/Scripts/jquery.validate*"));
@@ -26,6 +27,7 @@ namespace FantasyEuroleague
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrapReadable.css",
                       "~/Content/DataTables/css/dataTables.bootstrap.css",
+                      "~/Content/toastr.css",
                       "~/Content/site.css"));
         }
     }

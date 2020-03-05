@@ -18,11 +18,13 @@
         @Html.TextBoxFor(p => p.Lastname, new { @class = "form-control" })
         @Html.ValidationMessageFor(p => p.Lastname)
     </div>
+
     <div class="form-group">
         @Html.LabelFor(p => p.Profile.Country)
-        @Html.TextBoxFor(p => p.Profile.Country, new { @class = "form-control" })
+        @Html.DropDownListFor(p => p.Profile.Country, new SelectList(Enumerable.Empty<SelectListItem>()), "--Choose Nationality--", new { @class = "form-control" })
         @Html.ValidationMessageFor(p => p.Profile.Country)
     </div>
+
     <div class="form-group">
         @Html.LabelFor(p => p.Profile.Position)
         @Html.EnumDropDownListFor(p => p.Profile.Position, new { @class = "form-control" })
@@ -31,15 +33,56 @@
 
     <div class="form-group">
         @Html.LabelFor(p => p.TeamID)
-        @Html.DropDownListFor(p => p.TeamID, new SelectList(Model.Teams, "ID", "Name"), "--Select--", new { @class = "form-control" })
+        @Html.DropDownListFor(p => p.TeamID, new SelectList(Model.Teams, "ID", "Name"), "--Choose Team--", new { @class = "form-control" })
         @Html.ValidationMessageFor(p => p.TeamID)
     </div>
 
     @Html.HiddenFor(pl => pl.Id)
-    <button id ="newPlayer" type="submit" class="btn btn-primary">Save</button>
+    <button id="newPlayer" type="submit" class="btn btn-primary">Save</button>
 }
 
 @section Scripts{
     @Scripts.Render("~/bundles/jqueryval")
+
+    <script>
+        $(document).ready(function () {
+            let dropdownNations = $("#Profile_Country");
+
+            // Load the external API
+            const url = 'https://restcountries.eu/rest/v2/all'
+
+            // Populate DropDownList Of Nationalities with Countries 3letter_code (alpha3Code)
+            $.getJSON(url, function (data) {
+                $.each(data, function (key, entry) {
+                    dropdownNations.append($('<option></option>').attr('value', entry.alpha3Code).text(entry.alpha3Code));
+                });
+            });
+
+            //Register a Player and his Profile at the same time
+            let viewModel = { Profile:{ }};
+
+            $("#newPlayer").click(function (e) {
+                e.preventDefault();
+
+                viewModel.Firstname = $('#Firstname').val();
+                viewModel.Lastname = $('#Lastname').val();
+                viewModel.Profile.Country = $('#Profile_Country').val();
+                viewModel.Profile.Position = $('#Profile_Position').val();
+                viewModel.TeamID = $('#TeamID').val();
+            
+                $.ajax({
+                    url: "/api/players",
+                    method: "post",
+                    data: viewModel
+                })
+                    .done(function () {
+                        toastr.success("A new player has been added!")
+                    })
+                    .fail(function () {
+                        toastr.error("Something went really bad!")
+                    });
+            });
+        });
+    </script>
 }
 

@@ -17,6 +17,5 @@ namespace FantasyEuroleague.Dtos
         public ProfileDto Profile { get; set; }
         public TeamDto Team { get; set; }
         public int TeamID { get; set; }
-
     }
 }
