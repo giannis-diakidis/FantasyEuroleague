@@ -41,7 +41,7 @@
         @foreach (var stat in Model)
         {
             <tr>
-                <td><b>@stat.Player.Fullname</b></td>
+                <td>@stat.Player.Fullname</td>
                 <td>@stat.Points</td>
                 <td>@stat.TwoPointMade/@stat.TwoPointAttempted</td>
                 <td>@Html.DisplayFor(percentage => stat.TwoPointPercentage)</td>
@@ -62,6 +62,27 @@
                 <td>@stat.PIR</td>
             </tr>
         }
+    <tr>
+        <td><b>Team Stats</b></td>
+        <td>@Model.Sum(st => st.Points)</td>
+        <td>@Model.Sum(st => st.TwoPointMade)/@Model.Sum(st => st.TwoPointAttempted)</td>
+        <td>@(@Model.Sum(st => st.TwoPointAttempted) != 0 ? ((decimal)@Model.Sum(st => st.TwoPointMade) / @Model.Sum(st => st.TwoPointAttempted) * 100).ToString("#00.00") : "0")%</td>
+        <td>@Model.Sum(st => st.ThreePointMade)/@Model.Sum(st => st.ThreePointAttempted)</td>
+        <td>@(@Model.Sum(st => st.ThreePointAttempted) != 0 ? ((decimal)@Model.Sum(st => st.ThreePointMade) / @Model.Sum(st => st.ThreePointAttempted) * 100).ToString("#00.00") : "0")%</td>
+        <td>@Model.Sum(st => st.FreeThrowMade)/@Model.Sum(st => st.FreeThrowAttempted)</td>
+        <td>@(@Model.Sum(st => st.FreeThrowAttempted) != 0 ? ((decimal)@Model.Sum(st => st.FreeThrowMade) / @Model.Sum(st => st.FreeThrowAttempted) * 100).ToString("#00.00") : "0")%</td>
+        <td>@Model.Sum(st=> st.OffensiveRebounds)</td>
+        <td>@Model.Sum(st => st.DefensiveRebounds)</td>
+        <td>@Model.Sum(st => st.Rebounds)</td>
+        <td>@Model.Sum(st => st.Assists)</td>
+        <td>@Model.Sum(st => st.Steals)</td>
+        <td>@Model.Sum(st => st.Turnovers)</td>
+        <td>@Model.Sum(st => st.BlocksMade)</td>
+        <td>@Model.Sum(st => st.BlocksReceived)</td>
+        <td>@Model.Sum(st => st.FoulsMade)</td>
+        <td>@Model.Sum(st => st.FoulsReceived)</td>
+        <td>@Model.Sum(st => st.PIR)</td>
+    </tr>
     </tbody>
 
 </table>
