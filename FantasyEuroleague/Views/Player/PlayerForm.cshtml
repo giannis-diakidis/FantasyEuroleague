@@ -21,7 +21,7 @@
 
     <div class="form-group">
         @Html.LabelFor(p => p.Profile.Country)
-        @Html.DropDownListFor(p => p.Profile.Country, new SelectList(Enumerable.Empty<SelectListItem>()), "--Choose Nationality--", new { @class = "form-control" })
+        @Html.DropDownListFor(p => p.Profile.Country, new SelectList(Enumerable.Empty<SelectListItem>()), new { @class = "form-control" })
         @Html.ValidationMessageFor(p => p.Profile.Country)
     </div>
 
@@ -48,39 +48,78 @@
         $(document).ready(function () {
             let dropdownNations = $("#Profile_Country");
 
+            // Trying to fix dropdown in edit mode
+            //let index = 0;
+
+            //if ($('#Id').val() == 0) {
+            //    console.log("In Create!");
+            //    index = 0;
+            //} else {
+            //    console.log("In Update!");
+            //    index = 15;
+            //}
+            // Trying to fix dropdown in edit mode
+
+            // Temp
+            //dropdownNations.empty();
+
+            dropdownNations.append('<option selected="true" disabled>--Choose Nationality--</option>');
+            //dropdownNations.prop('selectedIndex', index);     
+            //console.log(index);
+            //Temp
+            
             // Load the external API
             const url = 'https://restcountries.eu/rest/v2/all'
 
             // Populate DropDownList Of Nationalities with Countries 3letter_code (alpha3Code)
             $.getJSON(url, function (data) {
                 $.each(data, function (key, entry) {
-                    dropdownNations.append($('<option></option>').attr('value', entry.alpha3Code).text(entry.alpha3Code));
+                    dropdownNations.append($('<option></option>').attr('value', entry.alpha3Code).text(entry.name));
                 });
             });
 
             //Register a Player and his Profile at the same time
-            let viewModel = { Profile:{ }};
+            let viewModel = { Profile: {} };
 
             $("#newPlayer").click(function (e) {
                 e.preventDefault();
 
+                viewModel.ID = $('#Id').val();
                 viewModel.Firstname = $('#Firstname').val();
                 viewModel.Lastname = $('#Lastname').val();
                 viewModel.Profile.Country = $('#Profile_Country').val();
                 viewModel.Profile.Position = $('#Profile_Position').val();
                 viewModel.TeamID = $('#TeamID').val();
-            
-                $.ajax({
-                    url: "/api/players",
-                    method: "post",
-                    data: viewModel
-                })
-                    .done(function () {
-                        toastr.success("A new player has been added!")
+
+                // Create Player
+                if ($('#Id').val() === 0) {
+                    $.ajax({
+                        url: "/api/players",
+                        method: "post",
+                        data: viewModel
                     })
-                    .fail(function () {
-                        toastr.error("Something went really bad!")
-                    });
+                        .done(function () {
+                            toastr.success("A new player has been added!")
+                        })
+                        .fail(function () {
+                            toastr.error("Something went really bad!")
+                        });
+
+                // Update Player
+                } else {
+                    $.ajax({
+                        url: "/api/players/" + $('#Id').val(),
+                        method: "put",
+                        data: viewModel
+                    })
+
+                        .done(function () {
+                            toastr.success("This player has been updated successfully!")
+                        })
+                        .fail(function () {
+                            toastr.error("Something went really bad!")
+                        });
+                }
             });
         });
     </script>
