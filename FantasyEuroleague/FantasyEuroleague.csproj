@@ -210,6 +210,10 @@
     <Compile Include="Migrations\202002271833382_SeedUsers.Designer.cs">
       <DependentUpon>202002271833382_SeedUsers.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202003171054177_AddCountry3CodeToProfile.cs" />
+    <Compile Include="Migrations\202003171054177_AddCountry3CodeToProfile.Designer.cs">
+      <DependentUpon>202003171054177_AddCountry3CodeToProfile.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ApplicationDbContext.cs" />
@@ -561,6 +565,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202002271833382_SeedUsers.resx">
       <DependentUpon>202002271833382_SeedUsers.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202003171054177_AddCountry3CodeToProfile.resx">
+      <DependentUpon>202003171054177_AddCountry3CodeToProfile.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

@@ -12,6 +12,7 @@ namespace FantasyEuroleague.Models
         public int PlayerID { get; set; }
         public Player Player { get; set; }
         public string Country { get; set; }
+        public string Country3Code { get; set; }
         public Position Position { get; set; }
     }
 }

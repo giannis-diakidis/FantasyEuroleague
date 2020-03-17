@@ -30,6 +30,7 @@
             @Html.DropDownListFor(p => p.Profile.Country, new SelectList(Enumerable.Empty<SelectListItem>()), Model.Profile.Country, new { @class = "form-control" })
         }
         @Html.ValidationMessageFor(p => p.Profile.Country)
+
     </div>
 
     <div class="form-group">
@@ -61,7 +62,7 @@
             // Populate DropDownList Of Nationalities with Countries 3letter_code (alpha3Code)
             $.getJSON(url, function (data) {
                 $.each(data, function (key, entry) {
-                    dropdownNations.append($('<option></option>').attr('value', entry.alpha3code).text(entry.name));
+                    dropdownNations.append($('<option></option>').val(entry.alpha3Code).text(entry.name));
                 });
             });
 
@@ -74,7 +75,8 @@
                 viewModel.ID = $('#Id').val();
                 viewModel.Firstname = $('#Firstname').val();
                 viewModel.Lastname = $('#Lastname').val();
-                viewModel.Profile.Country = $('#Profile_Country').val();
+                viewModel.Profile.Country3Code = $('#Profile_Country').val();
+                viewModel.Profile.Country = $('#Profile_Country option:selected').text();
                 viewModel.Profile.Position = $('#Profile_Position').val();
                 viewModel.TeamID = $('#TeamID').val();
 

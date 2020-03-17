@@ -26,12 +26,6 @@ namespace FantasyEuroleague.Controllers
         // GET: Player
         public ActionResult Index()
         {
-            //var players = context.Players
-            //.Include(p => p.Profile)
-            //.Include(p => p.Team).ToList();
-
-            //return View(players);
-
             return View("PlayersList");
         }
 

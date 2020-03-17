@@ -9,6 +9,7 @@ namespace FantasyEuroleague.Dtos
     public class ProfileDto
     {
         public string Country { get; set; }
+        public string Country3Code { get; set; }
         public Position Position { get; set; }
     }
 }

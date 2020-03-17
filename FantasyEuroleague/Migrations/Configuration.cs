@@ -210,251 +210,300 @@ namespace FantasyEuroleague.Migrations
                 // Panathinaikos Players Profiles
                 new Profile{
                      PlayerID= players.Single(p => p.Firstname == "Deshaun" && p.Lastname == "Thomas").ID,
-                     Country = "USA",
+                     Country3Code = "USA",
+                     Country = "United States of America",
                      Position = Position.Forward
                      },
                 new Profile{
                     PlayerID= players.Single(p => p.Firstname == "Tyrese" && p.Lastname == "Rice").ID,
-                    Country = "USA",
+                    Country3Code = "USA",
+                    Country = "United States of America",
                     Position = Position.Guard
                     },
                 new Profile{
                     PlayerID= players.Single(p => p.Firstname == "Georgios" && p.Lastname == "Papagiannis").ID,
-                    Country = "GRE",
+                    Country3Code = "GRE",
+                    Country = "Greece",
                     Position = Position.Center
                     },
                 new Profile{
                     PlayerID= players.Single(p => p.Firstname == "Andy" && p.Lastname == "Rautins").ID,
-                    Country = "CAN",
+                    Country3Code = "CAN",
+                    Country = "Canada",
                     Position = Position.Guard
                     },
                 new Profile{
                     PlayerID= players.Single(p => p.Firstname == "Ioannis" && p.Lastname == "Papapetrou").ID,
-                    Country = "GRE",
+                    Country3Code = "GRE",
+                    Country = "Greece",
                     Position = Position.Forward
                     },
                 new Profile{
                     PlayerID= players.Single(p => p.Firstname == "Nikos" && p.Lastname == "Pappas").ID,
-                    Country = "GRE",
+                    Country3Code = "GRE",
+                    Country = "Greece",
                     Position = Position.Guard
                     },
                 new Profile{
                     PlayerID= players.Single(p => p.Firstname == "Ian" && p.Lastname == "Vougioukas").ID,
-                    Country = "GRE",
+                    Country3Code = "GRE",
+                    Country = "Greece",
                     Position = Position.Center
                     },
                 new Profile{
                     PlayerID= players.Single(p => p.Firstname == "Konstantinos" && p.Lastname == "Papadakis").ID,
-                    Country = "GRE",
+                    Country3Code = "GRE",
+                    Country = "Greece",
                     Position = Position.Guard
                     },
                 new Profile{
                     PlayerID= players.Single(p => p.Firstname == "Wesley" && p.Lastname == "Johnson").ID,
-                    Country = "USA",
+                    Country3Code = "USA",
+                    Country = "United States of America",
                     Position = Position.Forward
                     },
                 new Profile{
                     PlayerID= players.Single(p => p.Firstname == "Jimmer" && p.Lastname == "Fredette").ID,
-                    Country = "USA",
+                    Country3Code = "USA",
+                    Country = "United States of America",
                     Position = Position.Guard
                     },
                 new Profile{
                     PlayerID= players.Single(p => p.Firstname == "Nick" && p.Lastname == "Calathes").ID,
-                    Country = "GRE",
+                    Country3Code = "GRE",
+                    Country = "Greece",
                     Position = Position.Guard
                     },
                 new Profile{
                     PlayerID= players.Single(p => p.Firstname == "Jacob" && p.Lastname == "Wiley").ID,
-                    Country = "USA",
+                    Country3Code = "USA",
+                    Country = "United States of America",
                     Position = Position.Forward
                     },
                 new Profile{
                     PlayerID= players.Single(p => p.Firstname == "Konstantinos" && p.Lastname == "Mitoglou").ID,
-                    Country = "GRE",
+                    Country3Code = "GRE",
+                    Country = "Greece",
                     Position = Position.Forward
                     },
                 new Profile{
                     PlayerID= players.Single(p => p.Firstname == "Benjamin" && p.Lastname == "Bentil").ID,
-                    Country = "GHA",
+                    Country3Code = "GHA",
+                    Country = "Ghana",
                     Position = Position.Forward
                     },
                 new Profile{
                     PlayerID = players.Single(p => p.Firstname == "Rion" && p.Lastname == "Brown").ID,
-                    Country = "USA",
+                    Country3Code = "USA",
+                    Country = "United States of America",
                     Position = Position.Forward
                     },
 
                 //Crvena Zvezda Players Profiles
                 new Profile{
                      PlayerID= players.Single(p => p.Firstname == "Ognjen" && p.Lastname == "Kuzmic").ID,
-                     Country = "SRB",
+                     Country3Code = "SRB",
+                     Country = "Serbia",
                      Position = Position.Center
                      },
                 new Profile{
                     PlayerID= players.Single(p => p.Firstname == "Kevin" && p.Lastname == "Punter").ID,
-                    Country = "USA",
+                    Country3Code = "USA",
+                    Country = "United States of America",
                     Position = Position.Guard
                     },
                 new Profile{
                     PlayerID= players.Single(p => p.Firstname == "Filip" && p.Lastname == "Covic").ID,
-                    Country = "SRB",
+                    Country3Code = "SRB",
+                    Country = "Serbia",
                     Position = Position.Guard
                     },
                 new Profile{
                     PlayerID= players.Single(p => p.Firstname == "Lorenzo" && p.Lastname == "Brown").ID,
-                    Country = "USA",
+                    Country3Code = "USA",
+                    Country = "United States of America",
                     Position = Position.Guard
                     },
                 new Profile{
                     PlayerID= players.Single(p => p.Firstname == "Stratos" && p.Lastname == "Perperoglou").ID,
-                    Country = "GRE",
+                    Country3Code = "GRE",
+                    Country = "Greece",
                     Position = Position.Forward
                     },
                 new Profile{
                     PlayerID= players.Single(p => p.Firstname == "Dejan" && p.Lastname == "Davidovac").ID,
-                    Country = "SRB",
+                    Country3Code = "SRB",
+                    Country = "Serbia",
                     Position = Position.Forward
                     },
                 new Profile{
                     PlayerID= players.Single(p => p.Firstname == "Branko" && p.Lastname == "Lazic").ID,
-                    Country = "SRB",
+                    Country3Code = "SRB",
+                    Country = "Serbia",
                     Position = Position.Guard
                     },
                 new Profile{
                     PlayerID= players.Single(p => p.Firstname == "Billy" && p.Lastname == "Baron").ID,
-                    Country = "USA",
+                    Country3Code = "USA",
+                    Country = "United States of America",
                     Position = Position.Guard
                     },
                 new Profile{
                     PlayerID= players.Single(p => p.Firstname == "Ognjen" && p.Lastname == "Dobric").ID,
-                    Country = "SRB",
+                    Country3Code = "SRB",
+                    Country = "Serbia",
                     Position = Position.Guard
                     },
                 new Profile{
                     PlayerID= players.Single(p => p.Firstname == "James" && p.Lastname == "Gist").ID,
-                    Country = "USA",
+                    Country3Code = "USA",
+                    Country = "United States of America",
                     Position = Position.Forward
                     },
                 new Profile{
                     PlayerID= players.Single(p => p.Firstname == "Marko" && p.Lastname == "Jagodic-Kuridza").ID,
-                    Country = "SRB",
+                    Country3Code = "SRB",
+                    Country = "Serbia",
                     Position = Position.Forward
                     },
                 new Profile{
                     PlayerID= players.Single(p => p.Firstname == "Charles" && p.Lastname == "Jenkins").ID,
-                    Country = "SRB",
+                    Country3Code = "SRB",
+                    Country = "Serbia",
                     Position = Position.Guard
                     },
                 new Profile{
                     PlayerID= players.Single(p => p.Firstname == "Borisa" && p.Lastname == "Simanic").ID,
-                    Country = "SRB",
+                    Country3Code = "SRB",
+                    Country = "Serbia",
                     Position = Position.Forward
                     },
                 new Profile{
                     PlayerID= players.Single(p => p.Firstname == "Nikola" && p.Lastname == "Jovanovic").ID,
-                    Country = "SRB",
+                    Country3Code = "SRB",
+                    Country = "Serbia",
                     Position = Position.Center
                     },
                 new Profile{
                     PlayerID = players.Single(p => p.Firstname == "Michael" && p.Lastname == "Ojo").ID,
-                    Country = "NGR",
+                    Country3Code = "NGR",
+                    Country = "Nigeria",
                     Position = Position.Center
                     },
                 new Profile{
                     PlayerID = players.Single(p => p.Firstname == "Vladimir" && p.Lastname == "Stimac").ID,
-                    Country = "SRB",
+                    Country3Code = "SRB",
+                    Country = "Serbia",
                     Position = Position.Center
                     },
                 new Profile{
                     PlayerID = players.Single(p => p.Firstname == "Mouhammad" && p.Lastname == "Faye").ID,
-                    Country = "SEN",
+                    Country3Code = "SEN",
+                    Country = "Senegal",
                     Position = Position.Forward
                     },
                 new Profile{
                     PlayerID = players.Single(p => p.Firstname == "Derrick" && p.Lastname == "Brown").ID,
-                    Country = "USA",
+                    Country3Code = "USA",
+                    Country = "United States of America",
                     Position = Position.Forward
                 },
 
                 // LDLC ASVEL Villeurbanne
                 new Profile{
                      PlayerID= players.Single(p => p.Firstname == "Jordan" && p.Lastname == "Taylor").ID,
-                     Country = "USA",
+                     Country3Code = "USA",
+                     Country = "United States of America",
                      Position = Position.Guard
                      },
                 new Profile{
                     PlayerID= players.Single(p => p.Firstname == "Tonye" && p.Lastname == "Jekiri").ID,
-                    Country = "NGR",
+                    Country3Code = "NGR",
+                    Country = "Nigeria",
                     Position = Position.Center
                     },
                 new Profile{
                     PlayerID= players.Single(p => p.Firstname == "Charles" && p.Lastname == "Kahudi").ID,
-                    Country = "FRA",
+                    Country3Code = "FRA",
+                    Country = "France",
                     Position = Position.Forward
                     },
                 new Profile{
                     PlayerID= players.Single(p => p.Firstname == "Theo" && p.Lastname == "Maledon").ID,
-                    Country = "FRA",
+                    Country3Code = "FRA",
+                    Country = "France",
                     Position = Position.Guard
                     },
                 new Profile{
                     PlayerID= players.Single(p => p.Firstname == "Davion" && p.Lastname == "Berry").ID,
-                    Country = "USA",
+                    Country3Code = "USA",
+                    Country = "United States of America",
                     Position = Position.Guard
                     },
                 new Profile{
                     PlayerID= players.Single(p => p.Firstname == "Rihards" && p.Lastname == "Lomazs").ID,
-                    Country = "LAT",
+                    Country3Code = "LAT",
+                    Country = "Latvia",
                     Position = Position.Forward
                     },
                 new Profile{
                     PlayerID= players.Single(p => p.Firstname == "Charles" && p.Lastname == "Galliou").ID,
-                    Country = "FRA",
+                    Country3Code = "FRA",
+                    Country = "France",
                     Position = Position.Forward
                     },
                 new Profile{
                     PlayerID= players.Single(p => p.Firstname == "Amine" && p.Lastname == "Noua").ID,
-                    Country = "FRA",
+                    Country3Code = "FRA",
+                    Country = "France",
                     Position = Position.Center
                     },
                 new Profile{
                     PlayerID= players.Single(p => p.Firstname == "Livio" && p.Lastname == "Jean-Charles").ID,
-                    Country = "FRA",
+                    Country3Code = "FRA",
+                    Country = "France",
                     Position = Position.Forward
                     },
                 new Profile{
                     PlayerID= players.Single(p => p.Firstname == "Antoine" && p.Lastname == "Diot").ID,
-                    Country = "FRA",
+                    Country3Code = "FRA",
+                    Country = "France",
                     Position = Position.Guard
                     },
                 new Profile{
                     PlayerID= players.Single(p => p.Firstname == "Ismael" && p.Lastname == "Bako").ID,
-                    Country = "BEL",
+                    Country3Code = "BEL",
+                    Country = "Belgium",
                     Position = Position.Center
                     },
                 new Profile{
                     PlayerID= players.Single(p => p.Firstname == "David" && p.Lastname == "Lighty").ID,
-                    Country = "USA",
+                    Country3Code = "USA",
+                    Country = "United States of America",
                     Position = Position.Forward
                     },
                 new Profile{
                     PlayerID= players.Single(p => p.Firstname == "Guerschon" && p.Lastname == "Yabusele").ID,
-                    Country = "FRA",
+                    Country3Code = "FRA",
+                    Country = "France",
                     Position = Position.Forward
                     },
                 new Profile{
                     PlayerID= players.Single(p => p.Firstname == "Matthew" && p.Lastname == "Strazel").ID,
-                    Country = "FRA",
+                    Country3Code = "FRA",
+                    Country = "France",
                     Position = Position.Guard
                     },
                 new Profile{
                     PlayerID = players.Single(p => p.Firstname == "Adreian" && p.Lastname == "Payne").ID,
-                    Country = "USA",
+                    Country3Code = "USA",
+                    Country = "United States of America",
                     Position = Position.Center
                     },
                 new Profile{
                     PlayerID= players.Single(p => p.Firstname == "Edwin" && p.Lastname == "Jackson").ID,
-                    Country = "FRA",
+                    Country3Code = "FRA",
+                    Country = "France",
                     Position = Position.Forward
                     }
             };
