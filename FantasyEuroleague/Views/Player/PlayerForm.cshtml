@@ -23,11 +23,11 @@
         @Html.LabelFor(p => p.Profile.Country)
         @if (Model.Id == 0)
         {
-            @Html.DropDownListFor(p => p.Profile.Country, new SelectList(Enumerable.Empty<SelectListItem>()),"--Choose Nationality--", new { @class = "form-control" })
+            @Html.DropDownListFor(p => p.Profile.Country, new SelectList(Enumerable.Empty<SelectListItem>()), "--Choose Nationality--", new { @class = "form-control" })
         }
         else
         {
-            @Html.DropDownListFor(p => p.Profile.Country, new SelectList(Enumerable.Empty<SelectListItem>()),Model.Profile.Country, new { @class = "form-control" })
+            @Html.DropDownListFor(p => p.Profile.Country, new SelectList(Enumerable.Empty<SelectListItem>()), Model.Profile.Country, new { @class = "form-control" })
         }
         @Html.ValidationMessageFor(p => p.Profile.Country)
     </div>
@@ -54,7 +54,7 @@
     <script>
         $(document).ready(function () {
             let dropdownNations = $('#Profile_Country');
-            
+
             // Load the external API
             const url = 'https://restcountries.eu/rest/v2/all'
 
