@@ -90,7 +90,8 @@ namespace FantasyEuroleague.Controllers
             var viewModel = new PlayerFormViewModel(player)
             {
                 Teams = context.Teams.ToList(),
-                Profile = player.Profile
+                Profile = player.Profile,
+                OptionLabel = player.Profile.Country
             };
 
             return View("PlayerForm", viewModel);

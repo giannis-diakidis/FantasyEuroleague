@@ -26,9 +26,12 @@ namespace FantasyEuroleague.ViewModels
         public int TeamID{ get; set; }
         public IEnumerable<Team> Teams { get; set; }
 
+        public string OptionLabel { get; set; }
+
         public PlayerFormViewModel()
         {
             Id = 0;
+            OptionLabel = "--Choose Nationality--";
         }
 
         public PlayerFormViewModel(Player player)
