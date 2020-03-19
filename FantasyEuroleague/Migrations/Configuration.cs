@@ -17,29 +17,25 @@ namespace FantasyEuroleague.Migrations
 
         protected override void Seed(FantasyEuroleague.Models.ApplicationDbContext context)
         {
-            var teams = new List<Team>
-            {
-                new Team{Name = "Panathinaikos OPAP Athens"},
-                new Team{Name = "Crvena Zvezda mts Belgrade"},
-                new Team{Name = "LDLC ASVEL Villeurbanne" }
-            };
-            teams.ForEach(t => context.Teams.AddOrUpdate(t));
-            context.SaveChanges();
+
+            var panathinaikosID = context.Teams.Single(t => t.Name == "Panathinaikos OPAP Athens").ID;
+            var crvenaID = context.Teams.Single(t => t.Name == "Crvena Zvezda mts Belgrade").ID;
+            var villeurbanneID = context.Teams.Single(t => t.Name == "LDLC ASVEL Villeurbanne").ID;
 
             var games = new List<Game>
             {
                 new Game
                 {
-                    HomeTeamID = teams.Single(t => t.Name == "Panathinaikos OPAP Athens").ID,
-                    GuestTeamID = teams.Single(t => t.Name == "Crvena Zvezda mts Belgrade").ID
+                    HomeTeamID = panathinaikosID,
+                    GuestTeamID = crvenaID
                 },
                 new Game
                 {
-                    HomeTeamID = teams.Single(t => t.Name == "LDLC ASVEL Villeurbanne").ID,
-                    GuestTeamID = teams.Single(t => t.Name == "Panathinaikos OPAP Athens").ID
+                    HomeTeamID = villeurbanneID,
+                    GuestTeamID = panathinaikosID
                 }
             };
-            games.ForEach(g => context.Games.AddOrUpdate(g));
+            games.ForEach(g => context.Games.AddOrUpdate(p => new { p.HomeTeamID, p.GuestTeamID } , g));
             context.SaveChanges();
 
             var players = new List<Player>
@@ -47,162 +43,162 @@ namespace FantasyEuroleague.Migrations
                 // Panathinaikos Players
                 new Player{
                     Firstname = "Deshaun", Lastname = "Thomas",
-                    TeamID = teams.Single(t => t.Name == "Panathinaikos OPAP Athens").ID},
+                    TeamID = panathinaikosID},
                 new Player{
                     Firstname = "Tyrese", Lastname = "Rice",
-                    TeamID = teams.Single(t => t.Name == "Panathinaikos OPAP Athens").ID},
+                    TeamID = panathinaikosID},
                 new Player{
                     Firstname = "Georgios", Lastname = "Papagiannis",
-                    TeamID = teams.Single(t => t.Name == "Panathinaikos OPAP Athens").ID},
+                    TeamID = panathinaikosID},
                 new Player{
                     Firstname = "Andy", Lastname = "Rautins",
-                    TeamID = teams.Single(t => t.Name == "Panathinaikos OPAP Athens").ID},
+                    TeamID = panathinaikosID},
                 new Player{
                     Firstname = "Ioannis", Lastname = "Papapetrou",
-                    TeamID = teams.Single(t => t.Name == "Panathinaikos OPAP Athens").ID},
+                    TeamID = panathinaikosID},
                 new Player{
                     Firstname = "Nikos", Lastname = "Pappas",
-                    TeamID = teams.Single(t => t.Name == "Panathinaikos OPAP Athens").ID},
+                    TeamID = panathinaikosID},
                 new Player{
                     Firstname = "Ian", Lastname = "Vougioukas",
-                    TeamID = teams.Single(t => t.Name == "Panathinaikos OPAP Athens").ID},
+                    TeamID = panathinaikosID},
                 new Player{
                     Firstname = "Konstantinos", Lastname = "Papadakis",
-                    TeamID = teams.Single(t => t.Name == "Panathinaikos OPAP Athens").ID},
+                    TeamID = panathinaikosID},
                 new Player{
                     Firstname = "Wesley", Lastname = "Johnson",
-                    TeamID = teams.Single(t => t.Name == "Panathinaikos OPAP Athens").ID},
+                    TeamID = panathinaikosID},
                 new Player{
                     Firstname = "Jimmer", Lastname = "Fredette",
-                    TeamID = teams.Single(t => t.Name == "Panathinaikos OPAP Athens").ID},
+                    TeamID = panathinaikosID},
                 new Player{
                     Firstname = "Nick", Lastname = "Calathes",
-                    TeamID = teams.Single(t => t.Name == "Panathinaikos OPAP Athens").ID},
+                    TeamID = panathinaikosID},
                 new Player{
                     Firstname = "Jacob", Lastname = "Wiley",
-                    TeamID = teams.Single(t => t.Name == "Panathinaikos OPAP Athens").ID},
+                    TeamID = panathinaikosID},
                 new Player{
                     Firstname = "Konstantinos", Lastname = "Mitoglou",
-                    TeamID = teams.Single(t => t.Name == "Panathinaikos OPAP Athens").ID},
+                    TeamID = panathinaikosID},
                 new Player{
                     Firstname = "Benjamin", Lastname = "Bentil",
-                    TeamID = teams.Single(t => t.Name == "Panathinaikos OPAP Athens").ID},
+                    TeamID = panathinaikosID},
 
                 // Former team Player (Brown)
                 new Player{
                     Firstname = "Rion", Lastname = "Brown",
-                    TeamID = teams.Single(t => t.Name == "Panathinaikos OPAP Athens").ID},
+                    TeamID = panathinaikosID},
                 // Former team Player (Brown)
 
                 //Crvena Zvezda Players
                 new Player{
                     Firstname = "Ognjen", Lastname = "Kuzmic",
-                    TeamID = teams.Single(t => t.Name == "Crvena Zvezda mts Belgrade").ID},
+                    TeamID = crvenaID},
                 new Player{
                     Firstname = "Kevin", Lastname = "Punter",
-                    TeamID = teams.Single(t => t.Name == "Crvena Zvezda mts Belgrade").ID},
+                    TeamID = crvenaID},
                 new Player{
                     Firstname = "Filip", Lastname = "Covic",
-                    TeamID = teams.Single(t => t.Name == "Crvena Zvezda mts Belgrade").ID},
+                    TeamID = crvenaID},
                 new Player{
                     Firstname = "Lorenzo", Lastname = "Brown",
-                    TeamID = teams.Single(t => t.Name == "Crvena Zvezda mts Belgrade").ID},
+                    TeamID = crvenaID},
                 new Player{
                     Firstname = "Stratos", Lastname = "Perperoglou",
-                    TeamID = teams.Single(t => t.Name == "Crvena Zvezda mts Belgrade").ID},
+                    TeamID = crvenaID},
                 new Player{
                     Firstname = "Dejan", Lastname = "Davidovac",
-                    TeamID = teams.Single(t => t.Name == "Crvena Zvezda mts Belgrade").ID},
+                    TeamID = crvenaID},
                 new Player{
                     Firstname = "Branko", Lastname = "Lazic",
-                    TeamID = teams.Single(t => t.Name == "Crvena Zvezda mts Belgrade").ID},
+                    TeamID = crvenaID},
                 new Player{
                     Firstname = "Billy", Lastname = "Baron",
-                    TeamID = teams.Single(t => t.Name == "Crvena Zvezda mts Belgrade").ID},
+                    TeamID = crvenaID},
                 new Player{
                     Firstname = "Ognjen", Lastname = "Dobric",
-                    TeamID = teams.Single(t => t.Name == "Crvena Zvezda mts Belgrade").ID},
+                    TeamID = crvenaID},
                 new Player{
                     Firstname = "James", Lastname = "Gist",
-                    TeamID = teams.Single(t => t.Name == "Crvena Zvezda mts Belgrade").ID},
+                    TeamID = crvenaID},
                 new Player{
                     Firstname = "Marko", Lastname = "Jagodic-Kuridza",
-                    TeamID = teams.Single(t => t.Name == "Crvena Zvezda mts Belgrade").ID},
+                    TeamID = crvenaID},
                 new Player{
                     Firstname = "Charles", Lastname = "Jenkins",
-                    TeamID = teams.Single(t => t.Name == "Crvena Zvezda mts Belgrade").ID},
+                    TeamID = crvenaID},
                 new Player{
                     Firstname = "Borisa", Lastname = "Simanic",
-                    TeamID = teams.Single(t => t.Name == "Crvena Zvezda mts Belgrade").ID},
+                    TeamID = crvenaID},
                 new Player{
                     Firstname = "Nikola", Lastname = "Jovanovic",
-                    TeamID = teams.Single(t => t.Name == "Crvena Zvezda mts Belgrade").ID},
+                    TeamID = crvenaID},
                 new Player{
                     Firstname = "Michael", Lastname = "Ojo",
-                    TeamID = teams.Single(t => t.Name == "Crvena Zvezda mts Belgrade").ID},
+                    TeamID = crvenaID},
                 new Player{
                     Firstname = "Vladimir", Lastname = "Stimac",
-                    TeamID = teams.Single(t => t.Name == "Crvena Zvezda mts Belgrade").ID},
+                    TeamID = crvenaID},
                 // Former team Players (Faye & Brown)
                 new Player{
                     Firstname = "Mouhammad", Lastname = "Faye",
-                    TeamID = teams.Single(t => t.Name == "Crvena Zvezda mts Belgrade").ID},
+                    TeamID = crvenaID},
                 new Player{
                     Firstname = "Derrick", Lastname = "Brown",
-                    TeamID = teams.Single(t => t.Name == "Crvena Zvezda mts Belgrade").ID},
+                    TeamID = crvenaID},
                 // Former team Players (Faye & Brown)
 
                 // LDLC ASVEL Villeurbanne Players
                 new Player{
                      Firstname = "Jordan", Lastname = "Taylor",
-                     TeamID = teams.Single(t => t.Name == "LDLC ASVEL Villeurbanne").ID},
+                     TeamID = villeurbanneID},
                 new Player{
                     Firstname = "Tonye", Lastname = "Jekiri",
-                    TeamID = teams.Single(t => t.Name == "LDLC ASVEL Villeurbanne").ID},
+                    TeamID = villeurbanneID},
                 new Player{
                     Firstname = "Charles", Lastname = "Kahudi",
-                    TeamID = teams.Single(t => t.Name == "LDLC ASVEL Villeurbanne").ID},
+                    TeamID = villeurbanneID},
                 new Player{
                     Firstname = "Theo", Lastname = "Maledon",
-                    TeamID = teams.Single(t => t.Name == "LDLC ASVEL Villeurbanne").ID},
+                    TeamID = villeurbanneID},
                 new Player{
                     Firstname = "Davion", Lastname = "Berry",
-                    TeamID = teams.Single(t => t.Name == "LDLC ASVEL Villeurbanne").ID},
+                    TeamID = villeurbanneID},
                 new Player{
                     Firstname = "Rihards", Lastname = "Lomazs",
-                    TeamID = teams.Single(t => t.Name == "LDLC ASVEL Villeurbanne").ID},
+                    TeamID = villeurbanneID},
                 new Player{
                     Firstname = "Charles", Lastname = "Galliou",
-                    TeamID = teams.Single(t => t.Name == "LDLC ASVEL Villeurbanne").ID},
+                    TeamID = villeurbanneID},
                 new Player{
                     Firstname = "Amine", Lastname = "Noua",
-                    TeamID = teams.Single(t => t.Name == "LDLC ASVEL Villeurbanne").ID},
+                    TeamID = villeurbanneID},
                 new Player{
                     Firstname = "Livio", Lastname = "Jean-Charles",
-                    TeamID = teams.Single(t => t.Name == "LDLC ASVEL Villeurbanne").ID},
+                    TeamID = villeurbanneID},
                 new Player{
                     Firstname = "Antoine", Lastname = "Diot",
-                    TeamID = teams.Single(t => t.Name == "LDLC ASVEL Villeurbanne").ID},
+                    TeamID = villeurbanneID},
                 new Player{
                     Firstname = "Ismael", Lastname = "Bako",
-                    TeamID = teams.Single(t => t.Name == "LDLC ASVEL Villeurbanne").ID},
+                    TeamID = villeurbanneID},
                 new Player{
                     Firstname = "David", Lastname = "Lighty",
-                    TeamID = teams.Single(t => t.Name == "LDLC ASVEL Villeurbanne").ID},
+                    TeamID = villeurbanneID},
                 new Player{
                     Firstname = "Guerschon", Lastname = "Yabusele",
-                    TeamID = teams.Single(t => t.Name == "LDLC ASVEL Villeurbanne").ID},
+                    TeamID = villeurbanneID},
                 new Player{
                     Firstname = "Matthew", Lastname = "Strazel",
-                    TeamID = teams.Single(t => t.Name == "LDLC ASVEL Villeurbanne").ID},
+                    TeamID = villeurbanneID},
                 new Player{
                     Firstname = "Adreian", Lastname = "Payne",
-                    TeamID = teams.Single(t => t.Name == "LDLC ASVEL Villeurbanne").ID},
+                    TeamID = villeurbanneID},
                 new Player{
                     Firstname = "Edwin", Lastname = "Jackson",
-                    TeamID = teams.Single(t => t.Name == "LDLC ASVEL Villeurbanne").ID}
+                    TeamID = villeurbanneID}
             };
-            players.ForEach(pl => context.Players.AddOrUpdate(pl));
+            players.ForEach(pl => context.Players.AddOrUpdate(p => new {p.Firstname, p.Lastname }, pl));
             context.SaveChanges();
 
             var profiles = new List<Profile>
@@ -507,95 +503,95 @@ namespace FantasyEuroleague.Migrations
                     Position = Position.Forward
                     }
             };
-            profiles.ForEach(pr => context.Profiles.AddOrUpdate(pr));
+            profiles.ForEach(pr => context.Profiles.AddOrUpdate(p => p.PlayerID, pr));
             context.SaveChanges();
 
             var playerStats = new List<PlayerStat>
             {
                 // Panathinaikos Players Statistics
                 new PlayerStat{
-                    GameID = games.Single(g => g.HomeTeam.Name == "Panathinaikos OPAP Athens" && g.GuestTeam.Name == "Crvena Zvezda mts Belgrade").ID,
-                    PlayerID = players.Single(p => p.Team.Name == "Panathinaikos OPAP Athens" && p.Firstname == "Deshaun" && p.Lastname == "Thomas").ID,
+                    GameID = games.Single(g => g.HomeTeamID == panathinaikosID && g.GuestTeamID == crvenaID).ID,
+                    PlayerID = players.Single(p => p.Firstname == "Deshaun" && p.Lastname == "Thomas").ID,
                     TwoPointMade = 6, TwoPointAttempted = 13, ThreePointMade = 0, ThreePointAttempted = 1, FreeThrowMade = 6, FreeThrowAttempted = 7,
                     OffensiveRebounds = 4, DefensiveRebounds = 7, Assists = 2, Steals = 2, Turnovers = 1, BlocksMade = 0, BlocksReceived = 0, FoulsMade = 2,
                     FoulsReceived = 4},
 
                 new PlayerStat{
-                    GameID = games.Single(g => g.HomeTeam.Name == "Panathinaikos OPAP Athens" && g.GuestTeam.Name == "Crvena Zvezda mts Belgrade").ID,
-                    PlayerID = players.Single(p => p.Team.Name == "Panathinaikos OPAP Athens" && p.Firstname == "Tyrese" && p.Lastname == "Rice").ID,
+                    GameID = games.Single(g => g.HomeTeamID == panathinaikosID && g.GuestTeamID == crvenaID).ID,
+                    PlayerID = players.Single(p => p.Firstname == "Tyrese" && p.Lastname == "Rice").ID,
                     TwoPointMade = 2, TwoPointAttempted = 3, ThreePointMade = 1, ThreePointAttempted = 2, FreeThrowMade = 5, FreeThrowAttempted = 6,
                     OffensiveRebounds = 1, DefensiveRebounds = 1, Assists = 2, Steals = 1, Turnovers = 1, BlocksMade = 0, BlocksReceived = 0, FoulsMade = 1,
                     FoulsReceived = 4},
 
                 new PlayerStat{
-                    GameID = games.Single(g => g.HomeTeam.Name == "Panathinaikos OPAP Athens" && g.GuestTeam.Name == "Crvena Zvezda mts Belgrade").ID,
-                    PlayerID = players.Single(p => p.Team.Name == "Panathinaikos OPAP Athens" && p.Firstname == "Georgios" && p.Lastname == "Papagiannis").ID,
+                    GameID = games.Single(g => g.HomeTeamID == panathinaikosID && g.GuestTeamID == crvenaID).ID,
+                    PlayerID = players.Single(p => p.Firstname == "Georgios" && p.Lastname == "Papagiannis").ID,
                     TwoPointMade = 4, TwoPointAttempted = 6, ThreePointMade = 0, ThreePointAttempted = 0, FreeThrowMade = 0, FreeThrowAttempted = 2,
                     OffensiveRebounds = 0, DefensiveRebounds = 5, Assists = 0, Steals = 1, Turnovers = 0, BlocksMade = 2, BlocksReceived = 0, FoulsMade = 1,
                     FoulsReceived = 1},
 
                 new PlayerStat{
-                    GameID = games.Single(g => g.HomeTeam.Name == "Panathinaikos OPAP Athens" && g.GuestTeam.Name == "Crvena Zvezda mts Belgrade").ID,
-                    PlayerID = players.Single(p => p.Team.Name == "Panathinaikos OPAP Athens" && p.Firstname == "Ioannis" &&  p.Lastname == "Papapetrou").ID,
+                    GameID = games.Single(g => g.HomeTeamID == panathinaikosID && g.GuestTeamID == crvenaID).ID,
+                    PlayerID = players.Single(p => p.Firstname == "Ioannis" &&  p.Lastname == "Papapetrou").ID,
                     TwoPointMade = 1, TwoPointAttempted = 2, ThreePointMade = 0, ThreePointAttempted = 1, FreeThrowMade = 0, FreeThrowAttempted = 0,
                     OffensiveRebounds = 0, DefensiveRebounds = 2, Assists = 0, Steals = 0, Turnovers = 0, BlocksMade = 1, BlocksReceived = 0, FoulsMade = 3,
                     FoulsReceived = 1},
 
                 new PlayerStat{
-                    GameID = games.Single(g => g.HomeTeam.Name == "Panathinaikos OPAP Athens" && g.GuestTeam.Name == "Crvena Zvezda mts Belgrade").ID,
-                    PlayerID = players.Single(p => p.Team.Name == "Panathinaikos OPAP Athens" && p.Firstname == "Ian" &&  p.Lastname == "Vougioukas").ID,
+                    GameID = games.Single(g => g.HomeTeamID == panathinaikosID && g.GuestTeamID == crvenaID).ID,
+                    PlayerID = players.Single(p => p.Firstname == "Ian" &&  p.Lastname == "Vougioukas").ID,
                     TwoPointMade = 2, TwoPointAttempted = 2, ThreePointMade = 0, ThreePointAttempted = 0, FreeThrowMade = 0, FreeThrowAttempted = 0,
                     OffensiveRebounds = 0, DefensiveRebounds = 2, Assists = 0, Steals = 0, Turnovers = 4, BlocksMade = 0, BlocksReceived = 0, FoulsMade = 1,
                     FoulsReceived = 2},
 
                 new PlayerStat{
-                    GameID = games.Single(g => g.HomeTeam.Name == "Panathinaikos OPAP Athens" && g.GuestTeam.Name == "Crvena Zvezda mts Belgrade").ID,
-                    PlayerID = players.Single(p => p.Team.Name == "Panathinaikos OPAP Athens" && p.Firstname == "Wesley" &&  p.Lastname == "Johnson").ID,
+                    GameID = games.Single(g => g.HomeTeamID == panathinaikosID && g.GuestTeamID == crvenaID).ID,
+                    PlayerID = players.Single(p => p.Firstname == "Wesley" &&  p.Lastname == "Johnson").ID,
                     TwoPointMade = 1, TwoPointAttempted = 1, ThreePointMade = 0, ThreePointAttempted = 0, FreeThrowMade = 1, FreeThrowAttempted = 4,
                     OffensiveRebounds = 0, DefensiveRebounds = 3, Assists = 1, Steals = 2, Turnovers = 0, BlocksMade = 0, BlocksReceived = 0, FoulsMade = 2,
                     FoulsReceived = 2},
 
                 // Its not Panathinaikos player any more. It should be fixed!
                 new PlayerStat{
-                    GameID = games.Single(g => g.HomeTeam.Name == "Panathinaikos OPAP Athens" && g.GuestTeam.Name == "Crvena Zvezda mts Belgrade").ID,
-                    PlayerID = players.Single(p => p.Team.Name == "Panathinaikos OPAP Athens" && p.Firstname == "Rion" &&  p.Lastname == "Brown").ID,
+                    GameID = games.Single(g => g.HomeTeamID == panathinaikosID && g.GuestTeamID == crvenaID).ID,
+                    PlayerID = players.Single(p => p.Firstname == "Rion" &&  p.Lastname == "Brown").ID,
                     TwoPointMade = 0, TwoPointAttempted = 0, ThreePointMade = 0, ThreePointAttempted = 0, FreeThrowMade = 0, FreeThrowAttempted = 0,
                     OffensiveRebounds = 0, DefensiveRebounds = 1, Assists = 0, Steals = 0, Turnovers = 0, BlocksMade = 0, BlocksReceived = 0, FoulsMade = 1,
                     FoulsReceived = 2},
                  // Its not Panathinaikos player any more. It should be fixed!
 
                 new PlayerStat{
-                    GameID = games.Single(g => g.HomeTeam.Name == "Panathinaikos OPAP Athens" && g.GuestTeam.Name == "Crvena Zvezda mts Belgrade").ID,
-                    PlayerID = players.Single(p => p.Team.Name == "Panathinaikos OPAP Athens" && p.Firstname == "Jimmer" &&  p.Lastname == "Fredette").ID,
+                    GameID = games.Single(g => g.HomeTeamID == panathinaikosID && g.GuestTeamID == crvenaID).ID,
+                    PlayerID = players.Single(p => p.Firstname == "Jimmer" &&  p.Lastname == "Fredette").ID,
                     TwoPointMade = 2, TwoPointAttempted = 4, ThreePointMade = 1, ThreePointAttempted = 2, FreeThrowMade = 4, FreeThrowAttempted = 4,
                     OffensiveRebounds = 0, DefensiveRebounds = 1, Assists = 1, Steals = 0, Turnovers = 2, BlocksMade = 0, BlocksReceived = 0, FoulsMade = 2,
                     FoulsReceived = 3},
 
                 new PlayerStat{
-                    GameID = games.Single(g => g.HomeTeam.Name == "Panathinaikos OPAP Athens" && g.GuestTeam.Name == "Crvena Zvezda mts Belgrade").ID,
-                    PlayerID = players.Single(p => p.Team.Name == "Panathinaikos OPAP Athens" && p.Firstname == "Nick" &&  p.Lastname == "Calathes").ID,
+                    GameID = games.Single(g => g.HomeTeamID == panathinaikosID && g.GuestTeamID == crvenaID).ID,
+                    PlayerID = players.Single(p => p.Firstname == "Nick" &&  p.Lastname == "Calathes").ID,
                     TwoPointMade = 5, TwoPointAttempted = 8, ThreePointMade = 3, ThreePointAttempted = 6, FreeThrowMade = 2, FreeThrowAttempted = 3,
                     OffensiveRebounds = 0, DefensiveRebounds = 3, Assists = 7, Steals = 1, Turnovers = 5, BlocksMade = 0, BlocksReceived = 2, FoulsMade = 1,
                     FoulsReceived = 6},
 
                 new PlayerStat{
-                    GameID = games.Single(g => g.HomeTeam.Name == "Panathinaikos OPAP Athens" && g.GuestTeam.Name == "Crvena Zvezda mts Belgrade").ID,
-                    PlayerID = players.Single(p => p.Team.Name == "Panathinaikos OPAP Athens" && p.Firstname == "Jacob" &&  p.Lastname == "Wiley").ID,
+                    GameID = games.Single(g => g.HomeTeamID == panathinaikosID && g.GuestTeamID == crvenaID).ID,
+                    PlayerID = players.Single(p => p.Firstname == "Jacob" &&  p.Lastname == "Wiley").ID,
                     TwoPointMade = 1, TwoPointAttempted = 2, ThreePointMade = 0, ThreePointAttempted = 1, FreeThrowMade = 0, FreeThrowAttempted = 0,
                     OffensiveRebounds = 1, DefensiveRebounds = 0, Assists = 1, Steals = 1, Turnovers = 0, BlocksMade = 1, BlocksReceived = 0, FoulsMade = 2,
                     FoulsReceived = 0},
 
                 new PlayerStat{
-                    GameID = games.Single(g => g.HomeTeam.Name == "Panathinaikos OPAP Athens" && g.GuestTeam.Name == "Crvena Zvezda mts Belgrade").ID,
-                    PlayerID = players.Single(p => p.Team.Name == "Panathinaikos OPAP Athens" && p.Firstname == "Konstantinos" &&  p.Lastname == "Mitoglou").ID,
+                    GameID = games.Single(g => g.HomeTeamID == panathinaikosID && g.GuestTeamID == crvenaID).ID,
+                    PlayerID = players.Single(p => p.Firstname == "Konstantinos" &&  p.Lastname == "Mitoglou").ID,
                     TwoPointMade = 2, TwoPointAttempted = 2, ThreePointMade = 0, ThreePointAttempted = 0, FreeThrowMade = 2, FreeThrowAttempted = 2,
                     OffensiveRebounds = 0, DefensiveRebounds = 0, Assists = 0, Steals = 0, Turnovers = 0, BlocksMade = 0, BlocksReceived = 0, FoulsMade = 1,
                     FoulsReceived = 2},
 
                 //***************** DNP *****************//
                 new PlayerStat{
-                    GameID = games.Single(g => g.HomeTeam.Name == "Panathinaikos OPAP Athens" && g.GuestTeam.Name == "Crvena Zvezda mts Belgrade").ID,
-                    PlayerID = players.Single(p => p.Team.Name == "Panathinaikos OPAP Athens" && p.Firstname == "Benjamin" && p.Lastname == "Bentil").ID,
+                    GameID = games.Single(g => g.HomeTeamID == panathinaikosID && g.GuestTeamID == crvenaID).ID,
+                    PlayerID = players.Single(p => p.Firstname == "Benjamin" && p.Lastname == "Bentil").ID,
                     TwoPointMade = 0, TwoPointAttempted = 0, ThreePointMade = 0, ThreePointAttempted = 0, FreeThrowMade = 0, FreeThrowAttempted = 0,
                     OffensiveRebounds = 0, DefensiveRebounds = 0, Assists = 0, Steals = 0, Turnovers = 0, BlocksMade = 0, BlocksReceived = 0, FoulsMade = 0,
                     FoulsReceived = 0},
@@ -603,85 +599,85 @@ namespace FantasyEuroleague.Migrations
 
                 // Crvena Zvezda Players Statistics
                 new PlayerStat{
-                    GameID = games.Single(g => g.HomeTeam.Name == "Panathinaikos OPAP Athens" && g.GuestTeam.Name == "Crvena Zvezda mts Belgrade").ID,
-                    PlayerID = players.Single(p => p.Team.Name == "Crvena Zvezda mts Belgrade" && p.Firstname == "Derrick" && p.Lastname == "Brown").ID,
+                    GameID = games.Single(g => g.HomeTeamID == panathinaikosID && g.GuestTeamID == crvenaID).ID,
+                    PlayerID = players.Single(p => p.Firstname == "Derrick" && p.Lastname == "Brown").ID,
                     TwoPointMade = 0, TwoPointAttempted = 0, ThreePointMade = 1, ThreePointAttempted = 2, FreeThrowMade = 2, FreeThrowAttempted = 2,
                     OffensiveRebounds = 0, DefensiveRebounds = 1, Assists = 1, Steals = 0, Turnovers = 1, BlocksMade = 0, BlocksReceived = 0, FoulsMade = 1,
                     FoulsReceived = 1},
 
                 new PlayerStat{
-                    GameID = games.Single(g => g.HomeTeam.Name == "Panathinaikos OPAP Athens" && g.GuestTeam.Name == "Crvena Zvezda mts Belgrade").ID,
-                    PlayerID = players.Single(p => p.Team.Name == "Crvena Zvezda mts Belgrade" && p.Firstname == "Filip" && p.Lastname == "Covic").ID,
+                    GameID = games.Single(g => g.HomeTeamID == panathinaikosID && g.GuestTeamID == crvenaID).ID,
+                    PlayerID = players.Single(p => p.Firstname == "Filip" && p.Lastname == "Covic").ID,
                     TwoPointMade = 0, TwoPointAttempted = 0, ThreePointMade = 0, ThreePointAttempted = 0, FreeThrowMade = 0, FreeThrowAttempted = 0,
                     OffensiveRebounds = 0, DefensiveRebounds = 2, Assists = 0, Steals = 0, Turnovers = 3, BlocksMade = 0, BlocksReceived = 0, FoulsMade = 0,
                     FoulsReceived = 1},
 
                 new PlayerStat{
-                    GameID = games.Single(g => g.HomeTeam.Name == "Panathinaikos OPAP Athens" && g.GuestTeam.Name == "Crvena Zvezda mts Belgrade").ID,
-                    PlayerID = players.Single(p => p.Team.Name == "Crvena Zvezda mts Belgrade" && p.Firstname == "Lorenzo" && p.Lastname == "Brown").ID,
+                    GameID = games.Single(g => g.HomeTeamID == panathinaikosID && g.GuestTeamID == crvenaID).ID,
+                    PlayerID = players.Single(p => p.Firstname == "Lorenzo" && p.Lastname == "Brown").ID,
                     TwoPointMade = 0, TwoPointAttempted = 3, ThreePointMade = 1, ThreePointAttempted = 1, FreeThrowMade = 0, FreeThrowAttempted = 0,
                     OffensiveRebounds = 1, DefensiveRebounds = 1, Assists = 0, Steals = 1, Turnovers = 2, BlocksMade = 0, BlocksReceived = 0, FoulsMade = 0,
                     FoulsReceived = 1},
 
                 new PlayerStat{
-                    GameID = games.Single(g => g.HomeTeam.Name == "Panathinaikos OPAP Athens" && g.GuestTeam.Name == "Crvena Zvezda mts Belgrade").ID,
-                    PlayerID = players.Single(p => p.Team.Name == "Crvena Zvezda mts Belgrade" && p.Firstname == "Stratos" && p.Lastname == "Perperoglou").ID,
+                    GameID = games.Single(g => g.HomeTeamID == panathinaikosID && g.GuestTeamID == crvenaID).ID,
+                    PlayerID = players.Single(p => p.Firstname == "Stratos" && p.Lastname == "Perperoglou").ID,
                     TwoPointMade = 3, TwoPointAttempted = 8, ThreePointMade = 2, ThreePointAttempted = 4, FreeThrowMade = 3, FreeThrowAttempted = 4,
                     OffensiveRebounds = 1, DefensiveRebounds = 2, Assists = 0, Steals = 3, Turnovers = 2, BlocksMade = 0, BlocksReceived = 0, FoulsMade = 4,
                     FoulsReceived = 4},
 
                 new PlayerStat{
-                    GameID = games.Single(g => g.HomeTeam.Name == "Panathinaikos OPAP Athens" && g.GuestTeam.Name == "Crvena Zvezda mts Belgrade").ID,
-                    PlayerID = players.Single(p => p.Team.Name == "Crvena Zvezda mts Belgrade" && p.Firstname == "Dejan" && p.Lastname == "Davidovac").ID,
+                    GameID = games.Single(g => g.HomeTeamID == panathinaikosID && g.GuestTeamID == crvenaID).ID,
+                    PlayerID = players.Single(p => p.Firstname == "Dejan" && p.Lastname == "Davidovac").ID,
                     TwoPointMade = 0, TwoPointAttempted = 1, ThreePointMade = 1, ThreePointAttempted = 2, FreeThrowMade = 0, FreeThrowAttempted = 0,
                     OffensiveRebounds = 2, DefensiveRebounds = 1, Assists = 0, Steals = 1, Turnovers = 0, BlocksMade = 0, BlocksReceived = 0, FoulsMade = 2,
                     FoulsReceived = 2},
 
                 new PlayerStat{
-                    GameID = games.Single(g => g.HomeTeam.Name == "Panathinaikos OPAP Athens" && g.GuestTeam.Name == "Crvena Zvezda mts Belgrade").ID,
-                    PlayerID = players.Single(p => p.Team.Name == "Crvena Zvezda mts Belgrade" && p.Firstname == "Branko" && p.Lastname == "Lazic").ID,
+                    GameID = games.Single(g => g.HomeTeamID == panathinaikosID && g.GuestTeamID == crvenaID).ID,
+                    PlayerID = players.Single(p => p.Firstname == "Branko" && p.Lastname == "Lazic").ID,
                     TwoPointMade = 0, TwoPointAttempted = 1, ThreePointMade = 0, ThreePointAttempted = 1, FreeThrowMade = 0, FreeThrowAttempted = 0,
                     OffensiveRebounds = 1, DefensiveRebounds = 0, Assists = 1, Steals = 0, Turnovers = 0, BlocksMade = 0, BlocksReceived = 0, FoulsMade = 3,
                     FoulsReceived = 1},
 
                 new PlayerStat{
-                    GameID = games.Single(g => g.HomeTeam.Name == "Panathinaikos OPAP Athens" && g.GuestTeam.Name == "Crvena Zvezda mts Belgrade").ID,
-                    PlayerID = players.Single(p => p.Team.Name == "Crvena Zvezda mts Belgrade" && p.Firstname == "Mouhammad" && p.Lastname == "Faye").ID,
+                    GameID = games.Single(g => g.HomeTeamID == panathinaikosID && g.GuestTeamID == crvenaID).ID,
+                    PlayerID = players.Single(p => p.Firstname == "Mouhammad" && p.Lastname == "Faye").ID,
                     TwoPointMade = 0, TwoPointAttempted = 0, ThreePointMade = 1, ThreePointAttempted = 2, FreeThrowMade = 0, FreeThrowAttempted = 0,
                     OffensiveRebounds = 0, DefensiveRebounds = 2, Assists = 0, Steals = 0, Turnovers = 0, BlocksMade = 0, BlocksReceived = 0, FoulsMade = 2,
                     FoulsReceived = 0},
 
                 new PlayerStat{
-                    GameID = games.Single(g => g.HomeTeam.Name == "Panathinaikos OPAP Athens" && g.GuestTeam.Name == "Crvena Zvezda mts Belgrade").ID,
-                    PlayerID = players.Single(p => p.Team.Name == "Crvena Zvezda mts Belgrade" && p.Firstname == "Billy" && p.Lastname == "Baron").ID,
+                    GameID = games.Single(g => g.HomeTeamID == panathinaikosID && g.GuestTeamID == crvenaID).ID,
+                    PlayerID = players.Single(p => p.Firstname == "Billy" && p.Lastname == "Baron").ID,
                     TwoPointMade = 2, TwoPointAttempted = 7, ThreePointMade = 3, ThreePointAttempted = 6, FreeThrowMade = 2, FreeThrowAttempted = 2,
                     OffensiveRebounds = 0, DefensiveRebounds = 5, Assists = 6, Steals = 1, Turnovers = 2, BlocksMade = 1, BlocksReceived = 2, FoulsMade = 1,
                     FoulsReceived = 2},
 
                 new PlayerStat{
-                    GameID = games.Single(g => g.HomeTeam.Name == "Panathinaikos OPAP Athens" && g.GuestTeam.Name == "Crvena Zvezda mts Belgrade").ID,
-                    PlayerID = players.Single(p => p.Team.Name == "Crvena Zvezda mts Belgrade" && p.Firstname == "Ognjen" && p.Lastname == "Dobric").ID,
+                    GameID = games.Single(g => g.HomeTeamID == panathinaikosID && g.GuestTeamID == crvenaID).ID,
+                    PlayerID = players.Single(p => p.Firstname == "Ognjen" && p.Lastname == "Dobric").ID,
                     TwoPointMade = 3, TwoPointAttempted = 4, ThreePointMade = 0, ThreePointAttempted = 1, FreeThrowMade = 0, FreeThrowAttempted = 0,
                     OffensiveRebounds = 0, DefensiveRebounds = 0, Assists = 1, Steals = 1, Turnovers = 1, BlocksMade = 0, BlocksReceived = 0, FoulsMade = 2,
                     FoulsReceived = 1},
 
                 new PlayerStat{
-                    GameID = games.Single(g => g.HomeTeam.Name == "Panathinaikos OPAP Athens" && g.GuestTeam.Name == "Crvena Zvezda mts Belgrade").ID,
-                    PlayerID = players.Single(p => p.Team.Name == "Crvena Zvezda mts Belgrade" && p.Firstname == "James" && p.Lastname == "Gist").ID,
+                    GameID = games.Single(g => g.HomeTeamID == panathinaikosID && g.GuestTeamID == crvenaID).ID,
+                    PlayerID = players.Single(p => p.Firstname == "James" && p.Lastname == "Gist").ID,
                     TwoPointMade = 9, TwoPointAttempted = 18, ThreePointMade = 0, ThreePointAttempted = 2, FreeThrowMade = 4, FreeThrowAttempted = 5,
                     OffensiveRebounds = 6, DefensiveRebounds = 1, Assists = 1, Steals = 0, Turnovers = 0, BlocksMade = 0, BlocksReceived = 1, FoulsMade = 4,
                     FoulsReceived = 4},
 
                 new PlayerStat{
-                    GameID = games.Single(g => g.HomeTeam.Name == "Panathinaikos OPAP Athens" && g.GuestTeam.Name == "Crvena Zvezda mts Belgrade").ID,
-                    PlayerID = players.Single(p => p.Team.Name == "Crvena Zvezda mts Belgrade" && p.Firstname == "Charles" && p.Lastname == "Jenkins").ID,
+                    GameID = games.Single(g => g.HomeTeamID == panathinaikosID && g.GuestTeamID == crvenaID).ID,
+                    PlayerID = players.Single(p => p.Firstname == "Charles" && p.Lastname == "Jenkins").ID,
                     TwoPointMade = 4, TwoPointAttempted = 6, ThreePointMade = 0, ThreePointAttempted = 1, FreeThrowMade = 0, FreeThrowAttempted = 0,
                     OffensiveRebounds = 0, DefensiveRebounds = 2, Assists = 0, Steals = 1, Turnovers = 0, BlocksMade = 0, BlocksReceived = 0, FoulsMade = 3,
                     FoulsReceived = 0},
 
                 new PlayerStat{
-                    GameID = games.Single(g => g.HomeTeam.Name == "Panathinaikos OPAP Athens" && g.GuestTeam.Name == "Crvena Zvezda mts Belgrade").ID,
-                    PlayerID = players.Single(p => p.Team.Name == "Crvena Zvezda mts Belgrade" && p.Firstname == "Michael" && p.Lastname == "Ojo").ID,
+                    GameID = games.Single(g => g.HomeTeamID == panathinaikosID && g.GuestTeamID == crvenaID).ID,
+                    PlayerID = players.Single(p => p.Firstname == "Michael" && p.Lastname == "Ojo").ID,
                     TwoPointMade = 1, TwoPointAttempted = 2, ThreePointMade = 0, ThreePointAttempted = 0, FreeThrowMade = 0, FreeThrowAttempted = 0,
                     OffensiveRebounds = 0, DefensiveRebounds = 1, Assists = 0, Steals = 0, Turnovers = 2, BlocksMade = 1, BlocksReceived = 1, FoulsMade = 5,
                     FoulsReceived = 0},
@@ -689,88 +685,89 @@ namespace FantasyEuroleague.Migrations
                 // Game2 //
                // Panathinaikos Players Statistics
                 new PlayerStat{
-                    GameID = games.Single(g => g.HomeTeam.Name == "LDLC ASVEL Villeurbanne"  && g.GuestTeam.Name == "Panathinaikos OPAP Athens").ID,
-                    PlayerID = players.Single(p => p.Team.Name == "Panathinaikos OPAP Athens" && p.Firstname == "Deshaun" && p.Lastname == "Thomas").ID,
+                    GameID = games.Single(g => g.HomeTeamID == villeurbanneID  && g.GuestTeamID == panathinaikosID).ID,
+                    PlayerID = players.Single(p => p.Firstname == "Deshaun" && p.Lastname == "Thomas").ID,
                     TwoPointMade = 7, TwoPointAttempted = 11, ThreePointMade = 2, ThreePointAttempted =2, FreeThrowMade = 2, FreeThrowAttempted = 2,
                     OffensiveRebounds = 4, DefensiveRebounds = 2, Assists = 2, Steals = 1, Turnovers = 1, BlocksMade = 1, BlocksReceived = 1, FoulsMade = 1,
                     FoulsReceived = 4},
 
                 new PlayerStat{
-                    GameID = games.Single(g => g.HomeTeam.Name == "LDLC ASVEL Villeurbanne" && g.GuestTeam.Name == "Panathinaikos OPAP Athens").ID,
-                    PlayerID = players.Single(p => p.Team.Name == "Panathinaikos OPAP Athens" && p.Firstname == "Tyrese" && p.Lastname == "Rice").ID,
+                    GameID = games.Single(g => g.HomeTeamID == villeurbanneID  && g.GuestTeamID == panathinaikosID).ID,
+                    PlayerID = players.Single(p => p.Firstname == "Tyrese" && p.Lastname == "Rice").ID,
                     TwoPointMade = 1, TwoPointAttempted = 2, ThreePointMade = 1, ThreePointAttempted = 3, FreeThrowMade = 1, FreeThrowAttempted = 2,
                     OffensiveRebounds = 1, DefensiveRebounds = 0, Assists = 0, Steals = 0, Turnovers = 2, BlocksMade = 0, BlocksReceived = 0, FoulsMade = 2,
                     FoulsReceived = 1},
 
                 new PlayerStat{
-                    GameID = games.Single(g => g.HomeTeam.Name == "LDLC ASVEL Villeurbanne" && g.GuestTeam.Name == "Panathinaikos OPAP Athens").ID,
-                    PlayerID = players.Single(p => p.Team.Name == "Panathinaikos OPAP Athens" && p.Firstname == "Georgios" && p.Lastname == "Papagiannis").ID,
+                    GameID = games.Single(g => g.HomeTeamID == villeurbanneID  && g.GuestTeamID == panathinaikosID).ID,
+                    PlayerID = players.Single(p => p.Firstname == "Georgios" && p.Lastname == "Papagiannis").ID,
                     TwoPointMade = 3, TwoPointAttempted = 6, ThreePointMade = 0, ThreePointAttempted = 0, FreeThrowMade = 0, FreeThrowAttempted = 0,
                     OffensiveRebounds = 2, DefensiveRebounds = 1, Assists = 0, Steals = 0, Turnovers = 1, BlocksMade = 0, BlocksReceived = 0, FoulsMade = 3,
                     FoulsReceived = 0},
 
                 new PlayerStat{
-                    GameID = games.Single(g => g.HomeTeam.Name == "LDLC ASVEL Villeurbanne" && g.GuestTeam.Name == "Panathinaikos OPAP Athens").ID,
-                    PlayerID = players.Single(p => p.Team.Name == "Panathinaikos OPAP Athens" && p.Firstname == "Ioannis" &&  p.Lastname == "Papapetrou").ID,
+                    GameID = games.Single(g => g.HomeTeamID == villeurbanneID  && g.GuestTeamID == panathinaikosID).ID,
+                    PlayerID = players.Single(p => p.Firstname == "Ioannis" &&  p.Lastname == "Papapetrou").ID,
                     TwoPointMade = 2, TwoPointAttempted = 4, ThreePointMade = 0, ThreePointAttempted = 3, FreeThrowMade = 0, FreeThrowAttempted = 2,
                     OffensiveRebounds = 1, DefensiveRebounds = 3, Assists = 0, Steals = 0, Turnovers = 1, BlocksMade = 0, BlocksReceived = 1, FoulsMade = 3,
                     FoulsReceived = 1},
+
                 //***************** DNP *****************//
                 new PlayerStat{
-                    GameID = games.Single(g => g.HomeTeam.Name == "LDLC ASVEL Villeurbanne" && g.GuestTeam.Name == "Panathinaikos OPAP Athens").ID,
-                    PlayerID = players.Single(p => p.Team.Name == "Panathinaikos OPAP Athens" && p.Firstname == "Ian" &&  p.Lastname == "Vougioukas").ID,
+                    GameID = games.Single(g => g.HomeTeamID == villeurbanneID  && g.GuestTeamID == panathinaikosID).ID,
+                    PlayerID = players.Single(p => p.Firstname == "Ian" &&  p.Lastname == "Vougioukas").ID,
                     TwoPointMade = 0, TwoPointAttempted = 0, ThreePointMade = 0, ThreePointAttempted = 0, FreeThrowMade = 0, FreeThrowAttempted = 0,
                     OffensiveRebounds = 0, DefensiveRebounds = 0, Assists = 0, Steals = 0, Turnovers = 0, BlocksMade = 0, BlocksReceived = 0, FoulsMade = 0,
                     FoulsReceived = 0},
                 //***************** DNP *****************//
 
                 new PlayerStat{
-                    GameID = games.Single(g => g.HomeTeam.Name == "LDLC ASVEL Villeurbanne" && g.GuestTeam.Name == "Panathinaikos OPAP Athens").ID,
-                    PlayerID = players.Single(p => p.Team.Name == "Panathinaikos OPAP Athens" && p.Firstname == "Wesley" &&  p.Lastname == "Johnson").ID,
+                    GameID = games.Single(g => g.HomeTeamID == villeurbanneID  && g.GuestTeamID == panathinaikosID).ID,
+                    PlayerID = players.Single(p => p.Firstname == "Wesley" &&  p.Lastname == "Johnson").ID,
                     TwoPointMade = 0, TwoPointAttempted = 0, ThreePointMade = 0, ThreePointAttempted = 1, FreeThrowMade = 0, FreeThrowAttempted = 0,
                     OffensiveRebounds = 0, DefensiveRebounds = 1, Assists = 1, Steals = 0, Turnovers = 1, BlocksMade = 1, BlocksReceived = 0, FoulsMade = 2,
                     FoulsReceived = 0},
 
                 // Its not Panathinaikos player any more. It should be fixed!
                 new PlayerStat{
-                    GameID = games.Single(g => g.HomeTeam.Name == "LDLC ASVEL Villeurbanne" && g.GuestTeam.Name == "Panathinaikos OPAP Athens").ID,
-                    PlayerID = players.Single(p => p.Team.Name == "Panathinaikos OPAP Athens" && p.Firstname == "Rion" &&  p.Lastname == "Brown").ID,
+                    GameID = games.Single(g => g.HomeTeamID == villeurbanneID  && g.GuestTeamID == panathinaikosID).ID,
+                    PlayerID = players.Single(p => p.Firstname == "Rion" &&  p.Lastname == "Brown").ID,
                     TwoPointMade = 0, TwoPointAttempted = 0, ThreePointMade = 0, ThreePointAttempted = 0, FreeThrowMade = 0, FreeThrowAttempted = 2,
                     OffensiveRebounds = 0, DefensiveRebounds = 1, Assists = 0, Steals = 0, Turnovers = 0, BlocksMade = 0, BlocksReceived = 0, FoulsMade = 1,
                     FoulsReceived = 1},
-                 // Its not Panathinaikos player any more. It should be fixed!
+                // Its not Panathinaikos player any more. It should be fixed!
                  
                 new PlayerStat{
-                    GameID = games.Single(g => g.HomeTeam.Name == "LDLC ASVEL Villeurbanne" && g.GuestTeam.Name == "Panathinaikos OPAP Athens").ID,
-                    PlayerID = players.Single(p => p.Team.Name == "Panathinaikos OPAP Athens" && p.Firstname == "Jimmer" &&  p.Lastname == "Fredette").ID,
+                    GameID = games.Single(g => g.HomeTeamID == villeurbanneID  && g.GuestTeamID == panathinaikosID).ID,
+                    PlayerID = players.Single(p => p.Firstname == "Jimmer" &&  p.Lastname == "Fredette").ID,
                     TwoPointMade = 1, TwoPointAttempted = 4, ThreePointMade = 4, ThreePointAttempted = 6, FreeThrowMade = 4, FreeThrowAttempted = 5,
                     OffensiveRebounds = 0, DefensiveRebounds = 4, Assists = 3, Steals = 0, Turnovers = 2, BlocksMade = 0, BlocksReceived = 1, FoulsMade = 3,
                     FoulsReceived = 3},
 
                 new PlayerStat{
-                    GameID = games.Single(g => g.HomeTeam.Name == "LDLC ASVEL Villeurbanne" && g.GuestTeam.Name == "Panathinaikos OPAP Athens").ID,
-                    PlayerID = players.Single(p => p.Team.Name == "Panathinaikos OPAP Athens" && p.Firstname == "Nick" &&  p.Lastname == "Calathes").ID,
+                    GameID = games.Single(g => g.HomeTeamID == villeurbanneID  && g.GuestTeamID == panathinaikosID).ID,
+                    PlayerID = players.Single(p => p.Firstname == "Nick" &&  p.Lastname == "Calathes").ID,
                     TwoPointMade = 3, TwoPointAttempted = 4, ThreePointMade = 1, ThreePointAttempted = 4, FreeThrowMade = 4, FreeThrowAttempted = 6,
                     OffensiveRebounds = 0, DefensiveRebounds = 3, Assists = 8, Steals = 3, Turnovers = 7, BlocksMade = 0, BlocksReceived = 0, FoulsMade = 2,
                     FoulsReceived = 7},
 
                 new PlayerStat{
-                    GameID = games.Single(g => g.HomeTeam.Name == "LDLC ASVEL Villeurbanne" && g.GuestTeam.Name == "Panathinaikos OPAP Athens").ID,
-                    PlayerID = players.Single(p => p.Team.Name == "Panathinaikos OPAP Athens" && p.Firstname == "Jacob" &&  p.Lastname == "Wiley").ID,
+                    GameID = games.Single(g => g.HomeTeamID == villeurbanneID  && g.GuestTeamID == panathinaikosID).ID,
+                    PlayerID = players.Single(p => p.Firstname == "Jacob" &&  p.Lastname == "Wiley").ID,
                     TwoPointMade = 3, TwoPointAttempted = 4, ThreePointMade = 0, ThreePointAttempted = 0, FreeThrowMade = 1, FreeThrowAttempted = 4,
                     OffensiveRebounds = 0, DefensiveRebounds = 3, Assists = 0, Steals = 2, Turnovers = 1, BlocksMade = 1, BlocksReceived = 0, FoulsMade = 2,
                     FoulsReceived = 2},
 
                 new PlayerStat{
-                    GameID = games.Single(g => g.HomeTeam.Name == "LDLC ASVEL Villeurbanne" && g.GuestTeam.Name == "Panathinaikos OPAP Athens").ID,
-                    PlayerID = players.Single(p => p.Team.Name == "Panathinaikos OPAP Athens" && p.Firstname == "Konstantinos" &&  p.Lastname == "Mitoglou").ID,
+                    GameID = games.Single(g => g.HomeTeamID == villeurbanneID  && g.GuestTeamID == panathinaikosID).ID,
+                    PlayerID = players.Single(p => p.Firstname == "Konstantinos" &&  p.Lastname == "Mitoglou").ID,
                     TwoPointMade = 0, TwoPointAttempted = 0, ThreePointMade = 0, ThreePointAttempted = 1, FreeThrowMade = 2, FreeThrowAttempted = 2,
                     OffensiveRebounds = 1, DefensiveRebounds = 0, Assists = 0, Steals = 0, Turnovers = 0, BlocksMade = 0, BlocksReceived = 0, FoulsMade = 0,
                     FoulsReceived = 1},
 
                 new PlayerStat{
-                    GameID = games.Single(g => g.HomeTeam.Name == "LDLC ASVEL Villeurbanne" && g.GuestTeam.Name == "Panathinaikos OPAP Athens").ID,
-                    PlayerID = players.Single(p => p.Team.Name == "Panathinaikos OPAP Athens" && p.Firstname == "Benjamin" && p.Lastname == "Bentil").ID,
+                    GameID = games.Single(g => g.HomeTeamID == villeurbanneID  && g.GuestTeamID == panathinaikosID).ID,
+                    PlayerID = players.Single(p => p.Firstname == "Benjamin" && p.Lastname == "Bentil").ID,
                     TwoPointMade = 0, TwoPointAttempted = 0, ThreePointMade = 0, ThreePointAttempted = 0, FreeThrowMade = 0, FreeThrowAttempted = 2,
                     OffensiveRebounds = 1, DefensiveRebounds = 0, Assists = 0, Steals = 0, Turnovers = 0, BlocksMade = 0, BlocksReceived = 0, FoulsMade = 0,
                     FoulsReceived = 1},
@@ -778,92 +775,92 @@ namespace FantasyEuroleague.Migrations
                 // Game2 //
                // LDLC ASVEL Villeurbanne Players Statistics
                 new PlayerStat{
-                    GameID = games.Single(g => g.HomeTeam.Name == "LDLC ASVEL Villeurbanne"  && g.GuestTeam.Name == "Panathinaikos OPAP Athens").ID,
-                    PlayerID = players.Single(p => p.Team.Name == "LDLC ASVEL Villeurbanne" && p.Firstname == "Edwin" && p.Lastname == "Jackson").ID,
+                    GameID = games.Single(g => g.HomeTeamID == villeurbanneID  && g.GuestTeamID == panathinaikosID).ID,
+                    PlayerID = players.Single(p => p.Firstname == "Edwin" && p.Lastname == "Jackson").ID,
                     TwoPointMade = 2, TwoPointAttempted = 5, ThreePointMade = 0, ThreePointAttempted = 3, FreeThrowMade = 2, FreeThrowAttempted = 2,
                     OffensiveRebounds = 0, DefensiveRebounds = 2, Assists = 1, Steals = 2, Turnovers = 3, BlocksMade = 0, BlocksReceived = 0, FoulsMade = 2,
                     FoulsReceived = 4},
 
                 new PlayerStat{
-                    GameID = games.Single(g => g.HomeTeam.Name == "LDLC ASVEL Villeurbanne" && g.GuestTeam.Name == "Panathinaikos OPAP Athens").ID,
-                    PlayerID = players.Single(p => p.Team.Name == "LDLC ASVEL Villeurbanne" && p.Firstname == "Jordan" && p.Lastname == "Taylor").ID,
+                    GameID = games.Single(g => g.HomeTeamID == villeurbanneID  && g.GuestTeamID == panathinaikosID).ID,
+                    PlayerID = players.Single(p => p.Firstname == "Jordan" && p.Lastname == "Taylor").ID,
                     TwoPointMade = 2, TwoPointAttempted = 7, ThreePointMade = 1, ThreePointAttempted = 3, FreeThrowMade = 1, FreeThrowAttempted = 2,
                     OffensiveRebounds = 0, DefensiveRebounds = 2, Assists = 4, Steals = 2, Turnovers = 2, BlocksMade = 0, BlocksReceived = 1, FoulsMade = 3,
                     FoulsReceived = 3},
 
                 new PlayerStat{
-                    GameID = games.Single(g => g.HomeTeam.Name == "LDLC ASVEL Villeurbanne" && g.GuestTeam.Name == "Panathinaikos OPAP Athens").ID,
-                    PlayerID = players.Single(p => p.Team.Name == "LDLC ASVEL Villeurbanne" && p.Firstname == "Tonye" && p.Lastname == "Jekiri").ID,
+                    GameID = games.Single(g => g.HomeTeamID == villeurbanneID  && g.GuestTeamID == panathinaikosID).ID,
+                    PlayerID = players.Single(p => p.Firstname == "Tonye" && p.Lastname == "Jekiri").ID,
                     TwoPointMade = 6, TwoPointAttempted = 10, ThreePointMade = 0, ThreePointAttempted = 0, FreeThrowMade = 3, FreeThrowAttempted = 4,
                     OffensiveRebounds = 7, DefensiveRebounds = 5, Assists = 1, Steals = 0, Turnovers = 0, BlocksMade = 0, BlocksReceived = 0, FoulsMade = 1,
                     FoulsReceived = 3},
 
                 new PlayerStat{
-                    GameID = games.Single(g => g.HomeTeam.Name == "LDLC ASVEL Villeurbanne" && g.GuestTeam.Name == "Panathinaikos OPAP Athens").ID,
-                    PlayerID = players.Single(p => p.Team.Name == "LDLC ASVEL Villeurbanne" && p.Firstname == "Charles" &&  p.Lastname == "Kahudi").ID,
+                    GameID = games.Single(g => g.HomeTeamID == villeurbanneID  && g.GuestTeamID == panathinaikosID).ID,
+                    PlayerID = players.Single(p => p.Firstname == "Charles" &&  p.Lastname == "Kahudi").ID,
                     TwoPointMade = 2, TwoPointAttempted = 5, ThreePointMade = 2, ThreePointAttempted = 2, FreeThrowMade = 0, FreeThrowAttempted = 0,
                     OffensiveRebounds = 1, DefensiveRebounds = 1, Assists = 0, Steals = 1, Turnovers = 1, BlocksMade = 0, BlocksReceived = 0, FoulsMade = 1,
                     FoulsReceived = 1},
 
                 new PlayerStat{
-                    GameID = games.Single(g => g.HomeTeam.Name == "LDLC ASVEL Villeurbanne" && g.GuestTeam.Name == "Panathinaikos OPAP Athens").ID,
-                    PlayerID = players.Single(p => p.Team.Name == "LDLC ASVEL Villeurbanne" && p.Firstname == "Rihards" &&  p.Lastname == "Lomazs").ID,
+                    GameID = games.Single(g => g.HomeTeamID == villeurbanneID  && g.GuestTeamID == panathinaikosID).ID,
+                    PlayerID = players.Single(p => p.Firstname == "Rihards" &&  p.Lastname == "Lomazs").ID,
                     TwoPointMade = 0, TwoPointAttempted = 0, ThreePointMade = 1, ThreePointAttempted = 1, FreeThrowMade = 2, FreeThrowAttempted = 2,
                     OffensiveRebounds = 0, DefensiveRebounds = 0, Assists = 1, Steals = 0, Turnovers = 1, BlocksMade = 0, BlocksReceived = 0, FoulsMade = 4,
                     FoulsReceived = 1},
 
                 new PlayerStat{
-                    GameID = games.Single(g => g.HomeTeam.Name == "LDLC ASVEL Villeurbanne" && g.GuestTeam.Name == "Panathinaikos OPAP Athens").ID,
-                    PlayerID = players.Single(p => p.Team.Name == "LDLC ASVEL Villeurbanne" && p.Firstname == "Charles" &&  p.Lastname == "Galliou").ID,
+                    GameID = games.Single(g => g.HomeTeamID == villeurbanneID  && g.GuestTeamID == panathinaikosID).ID,
+                    PlayerID = players.Single(p => p.Firstname == "Charles" &&  p.Lastname == "Galliou").ID,
                     TwoPointMade = 0, TwoPointAttempted = 0, ThreePointMade = 0, ThreePointAttempted = 0, FreeThrowMade = 0, FreeThrowAttempted = 0,
                     OffensiveRebounds = 1, DefensiveRebounds = 0, Assists = 0, Steals = 0, Turnovers = 0, BlocksMade = 0, BlocksReceived = 0, FoulsMade = 2,
                     FoulsReceived = 0},
 
                 new PlayerStat{
-                    GameID = games.Single(g => g.HomeTeam.Name == "LDLC ASVEL Villeurbanne" && g.GuestTeam.Name == "Panathinaikos OPAP Athens").ID,
-                    PlayerID = players.Single(p => p.Team.Name == "LDLC ASVEL Villeurbanne" && p.Firstname == "Amine" &&  p.Lastname == "Noua").ID,
+                    GameID = games.Single(g => g.HomeTeamID == villeurbanneID  && g.GuestTeamID == panathinaikosID).ID,
+                    PlayerID = players.Single(p => p.Firstname == "Amine" &&  p.Lastname == "Noua").ID,
                     TwoPointMade = 1, TwoPointAttempted = 1, ThreePointMade = 0, ThreePointAttempted = 2, FreeThrowMade = 0, FreeThrowAttempted = 0,
                     OffensiveRebounds = 0, DefensiveRebounds = 1, Assists = 0, Steals = 0, Turnovers = 0, BlocksMade = 1, BlocksReceived = 0, FoulsMade = 1,
                     FoulsReceived = 0},
-              
+
                 new PlayerStat{
-                    GameID = games.Single(g => g.HomeTeam.Name == "LDLC ASVEL Villeurbanne" && g.GuestTeam.Name == "Panathinaikos OPAP Athens").ID,
-                    PlayerID = players.Single(p => p.Team.Name == "LDLC ASVEL Villeurbanne" && p.Firstname == "Livio" &&  p.Lastname == "Jean-Charles").ID,
+                    GameID = games.Single(g => g.HomeTeamID == villeurbanneID  && g.GuestTeamID == panathinaikosID).ID,
+                    PlayerID = players.Single(p => p.Firstname == "Livio" &&  p.Lastname == "Jean-Charles").ID,
                     TwoPointMade = 4, TwoPointAttempted = 6, ThreePointMade = 0, ThreePointAttempted = 2, FreeThrowMade = 0, FreeThrowAttempted = 0,
                     OffensiveRebounds = 3, DefensiveRebounds = 3, Assists = 1, Steals = 1, Turnovers = 1, BlocksMade = 1, BlocksReceived = 0, FoulsMade = 3,
                     FoulsReceived = 0},
 
                 new PlayerStat{
-                    GameID = games.Single(g => g.HomeTeam.Name == "LDLC ASVEL Villeurbanne" && g.GuestTeam.Name == "Panathinaikos OPAP Athens").ID,
-                    PlayerID = players.Single(p => p.Team.Name == "LDLC ASVEL Villeurbanne" && p.Firstname == "Antoine" &&  p.Lastname == "Diot").ID,
+                    GameID = games.Single(g => g.HomeTeamID == villeurbanneID  && g.GuestTeamID == panathinaikosID).ID,
+                    PlayerID = players.Single(p => p.Firstname == "Antoine" &&  p.Lastname == "Diot").ID,
                     TwoPointMade = 2, TwoPointAttempted = 5, ThreePointMade = 0, ThreePointAttempted = 4, FreeThrowMade = 2, FreeThrowAttempted = 2,
                     OffensiveRebounds = 0, DefensiveRebounds = 0, Assists = 6, Steals = 2, Turnovers = 3, BlocksMade = 0, BlocksReceived = 1, FoulsMade = 2,
                     FoulsReceived = 4},
 
                 new PlayerStat{
-                    GameID = games.Single(g => g.HomeTeam.Name == "LDLC ASVEL Villeurbanne" && g.GuestTeam.Name == "Panathinaikos OPAP Athens").ID,
-                    PlayerID = players.Single(p => p.Team.Name == "LDLC ASVEL Villeurbanne" && p.Firstname == "Ismael" &&  p.Lastname == "Bako").ID,
+                    GameID = games.Single(g => g.HomeTeamID == villeurbanneID  && g.GuestTeamID == panathinaikosID).ID,
+                    PlayerID = players.Single(p => p.Firstname == "Ismael" &&  p.Lastname == "Bako").ID,
                     TwoPointMade = 0, TwoPointAttempted = 0, ThreePointMade = 0, ThreePointAttempted = 0, FreeThrowMade = 1, FreeThrowAttempted = 2,
                     OffensiveRebounds = 0, DefensiveRebounds = 2, Assists = 0, Steals = 0, Turnovers = 0, BlocksMade = 1, BlocksReceived = 0, FoulsMade = 1,
                     FoulsReceived = 1},
 
                 new PlayerStat{
-                    GameID = games.Single(g => g.HomeTeam.Name == "LDLC ASVEL Villeurbanne" && g.GuestTeam.Name == "Panathinaikos OPAP Athens").ID,
-                    PlayerID = players.Single(p => p.Team.Name == "LDLC ASVEL Villeurbanne" && p.Firstname == "David" &&  p.Lastname == "Lighty").ID,
+                    GameID = games.Single(g => g.HomeTeamID == villeurbanneID  && g.GuestTeamID == panathinaikosID).ID,
+                    PlayerID = players.Single(p => p.Firstname == "David" &&  p.Lastname == "Lighty").ID,
                     TwoPointMade = 4, TwoPointAttempted = 7, ThreePointMade = 3, ThreePointAttempted = 5, FreeThrowMade = 1, FreeThrowAttempted = 1,
                     OffensiveRebounds = 2, DefensiveRebounds = 2, Assists = 4, Steals = 0, Turnovers = 2, BlocksMade = 0, BlocksReceived = 1, FoulsMade = 1,
                     FoulsReceived = 2},
 
                 //***************** DNP *****************//
                 new PlayerStat{
-                    GameID = games.Single(g => g.HomeTeam.Name == "LDLC ASVEL Villeurbanne" && g.GuestTeam.Name == "Panathinaikos OPAP Athens").ID,
-                    PlayerID = players.Single(p => p.Team.Name == "LDLC ASVEL Villeurbanne" && p.Firstname == "Matthew" && p.Lastname == "Strazel").ID,
+                    GameID = games.Single(g => g.HomeTeamID == villeurbanneID  && g.GuestTeamID == panathinaikosID).ID,
+                    PlayerID = players.Single(p => p.Firstname == "Matthew" && p.Lastname == "Strazel").ID,
                     TwoPointMade = 0, TwoPointAttempted = 0, ThreePointMade = 0, ThreePointAttempted = 0, FreeThrowMade = 0, FreeThrowAttempted = 0,
                     OffensiveRebounds = 0, DefensiveRebounds = 0, Assists = 0, Steals = 0, Turnovers = 0, BlocksMade = 0, BlocksReceived = 0, FoulsMade = 0,
                     FoulsReceived = 0}
                 //***************** DNP *****************//
             };
-            playerStats.ForEach(pl => context.PlayerStats.AddOrUpdate(pl));
+            playerStats.ForEach(s => context.PlayerStats.AddOrUpdate(p => new { p.GameID, p.PlayerID }, s));
             context.SaveChanges();
         }
     }

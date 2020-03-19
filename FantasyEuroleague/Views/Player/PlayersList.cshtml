@@ -69,20 +69,39 @@
             $("#players").on("click", ".js-delete", function () {
                 let button = $(this);
 
-                bootbox.confirm("The Player will be deleted permanently. Are you sure?", function (result) {
-                    if (result) {
-                        $.ajax({
-                            url: "/api/players/" + button.attr("data-player-id"),
-                            method: "DELETE",
-                            success: function () {
-                                table.row(button.parents("tr")).remove().draw();
+                bootbox.dialog({
+                    title: 'Delete Confirmation',
+                    message: '<p>The Player will be deleted permanently. Are you sure?</p>',
+                    size: 'large',
+                    onEscape: true,
+                    backdrop: true,
+                    buttons: {
+                        no: {
+                            label: 'No',
+                            className: 'btn-default',
+                            callback: function () {
+                                bootbox.hideAll();
                             }
-                        })
+                        },
+                        yes: {
+                            label: 'Yes',
+                            className: 'btn-danger',
+                            callback: function () {
+                                $.ajax({
+                                    url: "/api/players/" + button.attr("data-player-id"),
+                                    method: "DELETE",
+                                })
+                                    .done(function () {
+                                        table.row(button.parents("tr")).remove().draw();
+                                    })
+                                    .fail(function () {
+                                        alert("Something went really bad");
+                                    });
+                            }
+                        }
                     }
-                });
+                })
             });
-
         });
-
     </script>
 }

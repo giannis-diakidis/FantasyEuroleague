@@ -214,6 +214,10 @@
     <Compile Include="Migrations\202003171054177_AddCountry3CodeToProfile.Designer.cs">
       <DependentUpon>202003171054177_AddCountry3CodeToProfile.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202003181046361_PopulateTeams.cs" />
+    <Compile Include="Migrations\202003181046361_PopulateTeams.Designer.cs">
+      <DependentUpon>202003181046361_PopulateTeams.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ApplicationDbContext.cs" />
@@ -568,6 +572,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202003171054177_AddCountry3CodeToProfile.resx">
       <DependentUpon>202003171054177_AddCountry3CodeToProfile.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202003181046361_PopulateTeams.resx">
+      <DependentUpon>202003181046361_PopulateTeams.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
